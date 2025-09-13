@@ -1,431 +1,435 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portal da Escola de Programação</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      }
 
-      :root {
-        --primary: #4361ee;
-        --secondary: #3a0ca3;
-        --accent: #f72585;
-        --light: #f8f9fa;
-        --dark: #212529;
-        --success: #4cc9f0;
-        --warning: #ffba08;
-        --meet: #00897b;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal da Escola de Programação</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-      body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: var(--light);
-        min-height: 100vh;
-        padding: 20px;
-      }
+    :root {
+      --primary: #4361ee;
+      --secondary: #3a0ca3;
+      --accent: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --warning: #ffba08;
+      --meet: #00897b;
+    }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--light);
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-      header {
-        text-align: center;
-        padding: 20px 0;
-        margin-bottom: 30px;
-      }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-      .logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 15px;
-      }
+    header {
+      text-align: center;
+      padding: 20px 0;
+      margin-bottom: 30px;
+    }
 
-      .logo-icon {
-        font-size: 42px;
-        font-weight: bold;
-        color: var(--accent);
-        margin-right: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .logo-icon {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--accent);
+      margin-right: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .search-bar {
+      max-width: 600px;
+      margin: 30px auto;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      outline: none;
+    }
+
+    .search-bar button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background: var(--secondary);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .tool-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .tool-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tool-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .tool-card p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .nutror-icon {
+      font-weight: bold;
+      color: #ff3366;
+      font-size: 2.8rem !important;
+    }
+
+    .construct {
+      color: #5e17eb;
+    }
+
+    .p5js {
+      color: #ed225d;
+    }
+
+    .hotmart {
+      color: #ff6b35;
+    }
+
+    .codepen {
+      color: #47cf73;
+    }
+
+    .expo {
+      color: #4630eb;
+    }
+
+    .firebase {
+      color: #ffcb2b;
+    }
+
+    .github {
+      color: #4078c0;
+    }
+
+    .drive {
+      color: #34a853;
+    }
+
+    .meet {
+      color: var(--meet);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .instructions {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+    }
+
+    .instructions h2 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .instructions ol {
+      margin-left: 20px;
+    }
+
+    .instructions li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
       }
 
       h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        font-size: 2rem;
       }
 
       .subtitle {
-        font-size: 1.2rem;
-        opacity: 0.9;
-        max-width: 600px;
-        margin: 0 auto;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .search-bar {
-        max-width: 600px;
-        margin: 30px auto;
-        position: relative;
+        margin: 20px auto;
       }
+    }
+  </style>
+</head>
 
-      .search-bar input {
-        width: 100%;
-        padding: 15px 20px;
-        border: none;
-        border-radius: 50px;
-        font-size: 1rem;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        outline: none;
-      }
-
-      .search-bar button {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        border: none;
-        background: var(--primary);
-        color: white;
-        border-radius: 50px;
-        padding: 10px 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .search-bar button:hover {
-        background: var(--secondary);
-      }
-
-      .tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 20px;
-        margin-top: 40px;
-      }
-
-      .tool-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      }
-
-      .tool-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-        background: rgba(255, 255, 255, 0.2);
-      }
-
-      .tool-icon {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .tool-card h3 {
-        font-size: 1rem;
-        margin-bottom: 10px;
-      }
-
-      .tool-card p {
-        font-size: 0.8rem;
-        opacity: 0.8;
-      }
-
-      .nutror-icon {
-        font-weight: bold;
-        color: #ff3366;
-        font-size: 2.8rem !important;
-      }
-
-      .construct {
-        color: #5e17eb;
-      }
-      .p5js {
-        color: #ed225d;
-      }
-      .hotmart {
-        color: #ff6b35;
-      }
-      .codepen {
-        color: #47cf73;
-      }
-      .expo {
-        color: #4630eb;
-      }
-      .firebase {
-        color: #ffcb2b;
-      }
-      .github {
-        color: #4078c0;
-      }
-      .drive {
-        color: #34a853;
-      }
-      .meet {
-        color: var(--meet);
-      }
-
-      footer {
-        text-align: center;
-        margin-top: 50px;
-        padding: 20px;
-        font-size: 0.9rem;
-        opacity: 0.8;
-      }
-
-      .instructions {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        padding: 20px;
-        margin: 30px auto;
-        max-width: 800px;
-        backdrop-filter: blur(10px);
-      }
-
-      .instructions h2 {
-        margin-bottom: 15px;
-        text-align: center;
-      }
-
-      .instructions ol {
-        margin-left: 20px;
-      }
-
-      .instructions li {
-        margin-bottom: 10px;
-      }
-
-      @media (max-width: 768px) {
-        .tools-grid {
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-          gap: 15px;
-        }
-
-        h1 {
-          font-size: 2rem;
-        }
-
-        .subtitle {
-          font-size: 1rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .tools-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .search-bar {
-          margin: 20px auto;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <div class="logo">
-          <div class="logo-icon">{ }</div>
-          <h1>Portal da Escola de Programação</h1>
-        </div>
-        <p class="subtitle">
-          Um lugar para acessar todas as ferramentas que usamos em nossas aulas
-          de programação!
-        </p>
-      </header>
-
-      <div class="search-bar">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Encontre uma ferramenta..."
-        />
-        <button id="searchButton">
-          <i class="fas fa-search"></i> Pesquisar
-        </button>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">{ }</div>
+        <h1>Portal da Escola de Programação</h1>
       </div>
+      <p class="subtitle">
+        Um lugar para acessar todas as ferramentas que usamos em nossas aulas
+        de programação!
+      </p>
+    </header>
 
-      <div class="tools-grid">
-        <div class="tool-card" data-url="https://www.construct.net/">
-          <div class="tool-icon">
-            <i class="fas fa-gamepad construct"></i>
-          </div>
-          <h3>Construct</h3>
-          <p>Crie jogos incríveis</p>
-        </div>
-
-        <div class="tool-card" data-url="https://www.appnutror.com/">
-          <div class="tool-icon">
-            <span class="nutror-icon">N</span>
-          </div>
-          <h3>App Nutror</h3>
-          <p>Plataforma de aprendizado</p>
-        </div>
-
-        <div class="tool-card" data-url="https://p5js.org/">
-          <div class="tool-icon">
-            <i class="fas fa-paint-brush p5js"></i>
-          </div>
-          <h3>p5.js</h3>
-          <p>Biblioteca criativa</p>
-        </div>
-
-        <div class="tool-card" data-url="https://www.hotmart.com/">
-          <div class="tool-icon">
-            <i class="fas fa-graduation-cap hotmart"></i>
-          </div>
-          <h3>Hotmart</h3>
-          <p>Cursos e materiais</p>
-        </div>
-
-        <div class="tool-card" data-url="https://codepen.io/">
-          <div class="tool-icon">
-            <i class="fab fa-codepen codepen"></i>
-          </div>
-          <h3>CodePen</h3>
-          <p>Experiências com código</p>
-        </div>
-
-        <div class="tool-card" data-url="https://expo.io/">
-          <div class="tool-icon">
-            <i class="fas fa-mobile-alt expo"></i>
-          </div>
-          <h3>Expo</h3>
-          <p>Desenvolvimento mobile</p>
-        </div>
-
-        <div class="tool-card" data-url="https://firebase.google.com/">
-          <div class="tool-icon">
-            <i class="fas fa-database firebase"></i>
-          </div>
-          <h3>Firebase</h3>
-          <p>Banco de dados em nuvem</p>
-        </div>
-
-        <div class="tool-card" data-url="https://github.com/">
-          <div class="tool-icon">
-            <i class="fab fa-github github"></i>
-          </div>
-          <h3>GitHub</h3>
-          <p>Repositório de código</p>
-        </div>
-
-        <div class="tool-card" data-url="https://drive.google.com/">
-          <div class="tool-icon">
-            <i class="fab fa-google-drive drive"></i>
-          </div>
-          <h3>Google Drive</h3>
-          <p>Materiais das aulas</p>
-        </div>
-
-        <div class="tool-card" data-url="https://meet.google.com/">
-          <div class="tool-icon">
-            <i class="fab fa-google-meet meet"></i>
-          </div>
-          <h3>Google Meet</h3>
-          <p>Aulas Digitais</p>
-        </div>
-      </div>
-
-      <div class="instructions">
-        <h2>Como usar este portal</h2>
-        <ol>
-          <li>
-            Procure a ferramenta que você precisa usando a barra de pesquisa
-          </li>
-          <li>Clique no card da ferramenta para abri-la em uma nova aba</li>
-          <li>Para voltar ao portal, basta fechar a aba da ferramenta</li>
-          <li>
-            Use o portal sempre que precisar acessar rapidamente as ferramentas
-            das aulas
-          </li>
-        </ol>
-      </div>
-
-      <footer>
-        <p>Desenvolvido com ❤️ para a Escola de Programação | &copy; 2025</p>
-      </footer>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Encontre uma ferramenta..." />
+      <button id="searchButton">
+        <i class="fas fa-search"></i> Pesquisar
+      </button>
     </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Adiciona evento de clique para todos os cards de ferramentas
-        const toolCards = document.querySelectorAll(".tool-card");
-        toolCards.forEach((card) => {
-          card.addEventListener("click", function () {
-            const url = this.getAttribute("data-url");
-            if (url) {
-              window.open(url, "_blank");
-            }
-          });
-        });
+    <div class="tool-card" data-url="https://app.nutror.com/cursos">
+      <div class="tool-icon">
+        <span class="nutror-icon">N</span>
+      </div>
+      <h3>App Nutror</h3>
+      <p>Plataforma de aprendizado</p>
+    </div>
 
-        // Adiciona funcionalidade de pesquisa
-        const searchInput = document.getElementById("searchInput");
-        const searchButton = document.getElementById("searchButton");
+    <div class="tools-grid">
+      <div class="tool-card" data-url="https://editor.construct.net/">
+        <div class="tool-icon">
+          <i class="fas fa-gamepad construct"></i>
+        </div>
+        <h3>Construct</h3>
+        <p>Crie jogos incríveis</p>
+      </div>
 
-        searchButton.addEventListener("click", performSearch);
-        searchInput.addEventListener("keyup", function (event) {
-          if (event.key === "Enter") {
-            performSearch();
+      <div class="tool-card" data-url="https://editor.p5js.org/prof_focoensino/sketches">
+        <div class="tool-icon">
+          <i class="fas fa-paint-brush p5js"></i>
+        </div>
+        <h3>p5.js</h3>
+        <p>Biblioteca criativa</p>
+      </div>
+
+      <!-- <div class="tool-card" data-url="https://www.hotmart.com/">
+        <div class="tool-icon">
+          <i class="fas fa-graduation-cap hotmart"></i>
+        </div>
+        <h3>Hotmart</h3>
+        <p>Cursos e materiais</p>
+      </div> -->
+
+      <div class="tool-card" data-url="https://codepen.io/your-work">
+        <div class="tool-icon">
+          <i class="fab fa-codepen codepen"></i>
+        </div>
+        <h3>CodePen</h3>
+        <p>Experiências com código</p>
+      </div>
+
+      <div class="tool-card" data-url="https://expo.dev/">
+        <div class="tool-icon">
+          <i class="fas fa-mobile-alt expo"></i>
+        </div>
+        <h3>Expo</h3>
+        <p>Desenvolvimento mobile</p>
+      </div>
+
+      <div class="tool-card" data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdDE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1">
+        <div class="tool-icon">
+          <i class="fas fa-database firebase"></i>
+        </div>
+        <h3>Firebase</h3>
+        <p>Banco de dados em nuvem</p>
+      </div>
+
+      <div class="tool-card" data-url="https://github.com/focoensino">
+        <div class="tool-icon">
+          <i class="fab fa-github github"></i>
+        </div>
+        <h3>GitHub</h3>
+        <p>Repositório de código</p>
+      </div>
+
+      <div class="tool-card" data-url="https://drive.google.com/drive/u/0/home">
+        <div class="tool-icon">
+          <i class="fab fa-google-drive drive"></i>
+        </div>
+        <h3>Google Drive</h3>
+        <p>Materiais das aulas</p>
+      </div>
+
+      <div class="tool-card" data-url="https://meet.google.com/landing">
+        <div class="tool-icon">
+          <i class="fab fa-google-meet meet"></i>
+        </div>
+        <h3>Google Meet</h3>
+        <p>Aulas Digitais</p>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h2>Como usar este portal</h2>
+      <ol>
+        <li>
+          Procure a ferramenta que você precisa usando a barra de pesquisa
+        </li>
+        <li>Clique no card da ferramenta para abri-la em uma nova aba</li>
+        <li>Para voltar ao portal, basta fechar a aba da ferramenta</li>
+        <li>
+          Use o portal sempre que precisar acessar rapidamente as ferramentas
+          das aulas
+        </li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>Desenvolvido com ❤️ para a Escola de Programação | &copy; 2025</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Adiciona evento de clique para todos os cards de ferramentas
+      const toolCards = document.querySelectorAll(".tool-card");
+      toolCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const url = this.getAttribute("data-url");
+          if (url) {
+            window.open(url, "_blank");
           }
         });
-
-        function performSearch() {
-          const searchTerm = searchInput.value.toLowerCase().trim();
-
-          toolCards.forEach((card) => {
-            const toolName = card.querySelector("h3").textContent.toLowerCase();
-            const toolDesc = card.querySelector("p").textContent.toLowerCase();
-
-            if (
-              toolName.includes(searchTerm) ||
-              toolDesc.includes(searchTerm)
-            ) {
-              card.style.display = "block";
-            } else {
-              card.style.display = "none";
-            }
-          });
-        }
-
-        // Adiciona efeito de digitação no subtítulo
-        const subtitleText =
-          "Um lugar para acessar todas as ferramentas que usamos em nossas aulas de programação!";
-        const subtitleElement = document.querySelector(".subtitle");
-        let i = 0;
-
-        subtitleElement.textContent = "";
-
-        function typeWriter() {
-          if (i < subtitleText.length) {
-            subtitleElement.textContent += subtitleText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-          }
-        }
-
-        setTimeout(typeWriter, 1000);
       });
-    </script>
-  </body>
+
+      // Adiciona funcionalidade de pesquisa
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+
+      searchButton.addEventListener("click", performSearch);
+      searchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          performSearch();
+        }
+      });
+
+      function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+
+        toolCards.forEach((card) => {
+          const toolName = card.querySelector("h3").textContent.toLowerCase();
+          const toolDesc = card.querySelector("p").textContent.toLowerCase();
+
+          if (
+            toolName.includes(searchTerm) ||
+            toolDesc.includes(searchTerm)
+          ) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Adiciona efeito de digitação no subtítulo
+      const subtitleText =
+        "Um lugar para acessar todas as ferramentas que usamos em nossas aulas de programação!";
+      const subtitleElement = document.querySelector(".subtitle");
+      let i = 0;
+
+      subtitleElement.textContent = "";
+
+      function typeWriter() {
+        if (i < subtitleText.length) {
+          subtitleElement.textContent += subtitleText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+
+      setTimeout(typeWriter, 1000);
+    });
+  </script>
+</body>
+
 </html>
