@@ -23,7 +23,7 @@
       --success: #4cc9f0;
       --warning: #ffba08;
       --meet: #00897b;
-      --google: #4285F4;
+      --google: #DB4437;
     }
 
     body {
@@ -73,16 +73,8 @@
     }
 
     .search-section {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 800px;
+      max-width: 700px;
       margin: 30px auto;
-    }
-
-    .search-container {
-      display: flex;
-      flex-direction: column;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border-radius: 15px;
@@ -91,7 +83,7 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .search-container h3 {
+    .search-section h3 {
       margin-bottom: 15px;
       display: flex;
       align-items: center;
@@ -99,13 +91,14 @@
     }
 
     .search-bar {
+      display: flex;
       position: relative;
       width: 100%;
     }
 
     .search-bar input {
-      width: 100%;
-      padding: 15px 20px;
+      flex: 1;
+      padding: 15px 130px 15px 20px;
       border: none;
       border-radius: 50px;
       font-size: 1rem;
@@ -113,32 +106,40 @@
       outline: none;
     }
 
-    .search-bar button {
+    .search-btn {
+      position: absolute;
+      right: 70px;
+      top: 5px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .google-btn {
       position: absolute;
       right: 5px;
       top: 5px;
       border: none;
+      background: var(--google);
       color: white;
       border-radius: 50px;
-      padding: 10px 20px;
+      padding: 10px 15px;
       cursor: pointer;
       transition: all 0.3s ease;
+      font-size: 0.9rem;
     }
 
-    .portal-search button {
-      background: var(--primary);
-    }
-
-    .portal-search button:hover {
+    .search-btn:hover {
       background: var(--secondary);
     }
 
-    .google-search button {
-      background: var(--google);
-    }
-
-    .google-search button:hover {
-      background: #356ac3;
+    .google-btn:hover {
+      background: #b03c32;
     }
 
     .tools-grid {
@@ -227,6 +228,20 @@
       color: var(--meet);
     }
 
+    .no-results {
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
     footer {
       text-align: center;
       margin-top: 50px;
@@ -271,8 +286,17 @@
         font-size: 1rem;
       }
       
-      .search-section {
-        gap: 15px;
+      .search-bar input {
+        padding-right: 110px;
+      }
+      
+      .search-btn, .google-btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .search-btn {
+        right: 60px;
       }
     }
 
@@ -281,8 +305,21 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .search-section {
-        margin: 20px auto;
+      .search-bar {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .search-bar input {
+        padding: 12px 20px;
+        border-radius: 50px;
+      }
+      
+      .search-btn, .google-btn {
+        position: static;
+        width: 100%;
+        border-radius: 50px;
+        padding: 12px;
       }
     }
   </style>
@@ -302,28 +339,19 @@
     </header>
 
     <div class="search-section">
-      <div class="search-container portal-search">
-        <h3><i class="fas fa-search"></i> Pesquisar no Portal</h3>
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="Encontre uma ferramenta..." />
-          <button id="searchButton">
-            <i class="fas fa-search"></i> Pesquisar
-          </button>
-        </div>
-      </div>
-
-      <div class="search-container google-search">
-        <h3><i class="fab fa-google"></i> Pesquisar no Google</h3>
-        <div class="search-bar">
-          <input type="text" id="googleSearchInput" placeholder="Digite sua pesquisa para o Google..." />
-          <button id="googleSearchButton">
-            <i class="fab fa-google"></i> Google
-          </button>
-        </div>
+      <h3><i class="fas fa-search"></i> Pesquisa Integrada</h3>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Digite o nome de uma ferramenta..." />
+        <button class="search-btn" id="searchButton">
+          <i class="fas fa-search"></i> Portal
+        </button>
+        <button class="google-btn" id="googleSearchButton">
+          <i class="fab fa-google"></i> Google
+        </button>
       </div>
     </div>
 
-    <div class="tool-card" data-url="https://app.nutror.com/cursos">
+    <div class="tool-card" data-url="https://app.nutror.com/cursos" data-name="app nutror plataforma de aprendizado">
       <div class="tool-icon">
         <span class="nutror-icon">N</span>
       </div>
@@ -332,7 +360,7 @@
     </div>
 
     <div class="tools-grid">
-      <div class="tool-card" data-url="https://editor.construct.net/">
+      <div class="tool-card" data-url="https://editor.construct.net/" data-name="construct criar jogos incríveis">
         <div class="tool-icon">
           <i class="fas fa-gamepad construct"></i>
         </div>
@@ -340,7 +368,7 @@
         <p>Crie jogos incríveis</p>
       </div>
 
-      <div class="tool-card" data-url="https://editor.p5js.org/prof_focoensino/sketches">
+      <div class="tool-card" data-url="https://editor.p5js.org/prof_focoensino/sketches" data-name="p5js biblioteca criativa">
         <div class="tool-icon">
           <i class="fas fa-paint-brush p5js"></i>
         </div>
@@ -348,7 +376,7 @@
         <p>Biblioteca criativa</p>
       </div>
 
-      <div class="tool-card" data-url="https://codepen.io/your-work">
+      <div class="tool-card" data-url="https://codepen.io/your-work" data-name="codepen experiências com código">
         <div class="tool-icon">
           <i class="fab fa-codepen codepen"></i>
         </div>
@@ -356,7 +384,7 @@
         <p>Experiências com código</p>
       </div>
 
-      <div class="tool-card" data-url="https://expo.dev/">
+      <div class="tool-card" data-url="https://expo.dev/" data-name="expo desenvolvimento mobile">
         <div class="tool-icon">
           <i class="fas fa-mobile-alt expo"></i>
         </div>
@@ -364,7 +392,7 @@
         <p>Desenvolvimento mobile</p>
       </div>
 
-      <div class="tool-card" data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdDE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1">
+      <div class="tool-card" data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdDE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1" data-name="firebase banco de dados em nuvem">
         <div class="tool-icon">
           <i class="fas fa-database firebase"></i>
         </div>
@@ -372,7 +400,7 @@
         <p>Banco de dados em nuvem</p>
       </div>
 
-      <div class="tool-card" data-url="https://github.com/focoensino">
+      <div class="tool-card" data-url="https://github.com/focoensino" data-name="github repositório de código">
         <div class="tool-icon">
           <i class="fab fa-github github"></i>
         </div>
@@ -380,7 +408,7 @@
         <p>Repositório de código</p>
       </div>
 
-      <div class="tool-card" data-url="https://drive.google.com/drive/u/0/home">
+      <div class="tool-card" data-url="https://drive.google.com/drive/u/0/home" data-name="google drive materiais das aulas">
         <div class="tool-icon">
           <i class="fab fa-google-drive drive"></i>
         </div>
@@ -388,7 +416,7 @@
         <p>Materiais das aulas</p>
       </div>
 
-      <div class="tool-card" data-url="https://meet.google.com/landing">
+      <div class="tool-card" data-url="https://meet.google.com/landing" data-name="google meet aulas digitais">
         <div class="tool-icon">
           <i class="fas fa-video meet"></i>
         </div>
@@ -397,17 +425,22 @@
       </div>
     </div>
 
+    <div class="no-results" id="noResults">
+      <h3>Nenhuma ferramenta encontrada com esse nome.</h3>
+      <p>Deseja pesquisar no Google?</p>
+      <button class="google-btn" id="googleFallbackSearch">
+        <i class="fab fa-google"></i> Pesquisar no Google
+      </button>
+    </div>
+
     <div class="instructions">
       <h2>Como usar este portal</h2>
       <ol>
-        <li>Use a barra de pesquisa do Google para buscar informações na web</li>
-        <li>Procure ferramentas específicas usando a barra de pesquisa do portal</li>
+        <li>Digite o nome de uma ferramenta na barra de pesquisa</li>
+        <li>Clique em "Portal" para pesquisar nas ferramentas disponíveis</li>
+        <li>Se não encontrar, clique em "Google" para pesquisar na web</li>
         <li>Clique no card da ferramenta para abri-la em uma nova aba</li>
         <li>Para voltar ao portal, basta fechar a aba da ferramenta</li>
-        <li>
-          Use o portal sempre que precisar acessar rapidamente as ferramentas
-          das aulas
-        </li>
       </ol>
     </div>
 
@@ -418,8 +451,15 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Adiciona evento de clique para todos os cards de ferramentas
+      const searchInput = document.getElementById("searchInput");
+      const searchButton = document.getElementById("searchButton");
+      const googleSearchButton = document.getElementById("googleSearchButton");
+      const googleFallbackSearch = document.getElementById("googleFallbackSearch");
+      const noResults = document.getElementById("noResults");
       const toolCards = document.querySelectorAll(".tool-card");
+      let lastSearchTerm = "";
+
+      // Adiciona evento de clique para todos os cards de ferramentas
       toolCards.forEach((card) => {
         card.addEventListener("click", function () {
           const url = this.getAttribute("data-url");
@@ -429,10 +469,7 @@
         });
       });
 
-      // Adiciona funcionalidade de pesquisa no portal
-      const searchInput = document.getElementById("searchInput");
-      const searchButton = document.getElementById("searchButton");
-
+      // Pesquisa na plataforma
       searchButton.addEventListener("click", performPortalSearch);
       searchInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
@@ -440,39 +477,54 @@
         }
       });
 
+      // Pesquisa no Google
+      googleSearchButton.addEventListener("click", performGoogleSearch);
+      googleFallbackSearch.addEventListener("click", performGoogleSearch);
+
       function performPortalSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
+        lastSearchTerm = searchTerm;
+        
+        if (!searchTerm) {
+          // Se não há termo de pesquisa, mostra todas as ferramentas
+          toolCards.forEach((card) => {
+            card.style.display = "block";
+          });
+          noResults.classList.remove("show");
+          return;
+        }
 
+        let found = false;
+        
         toolCards.forEach((card) => {
+          const toolData = card.getAttribute("data-name").toLowerCase();
           const toolName = card.querySelector("h3").textContent.toLowerCase();
           const toolDesc = card.querySelector("p").textContent.toLowerCase();
 
           if (
+            toolData.includes(searchTerm) ||
             toolName.includes(searchTerm) ||
             toolDesc.includes(searchTerm)
           ) {
             card.style.display = "block";
+            found = true;
           } else {
             card.style.display = "none";
           }
         });
+
+        // Mostra mensagem se não encontrou resultados
+        if (!found) {
+          noResults.classList.add("show");
+        } else {
+          noResults.classList.remove("show");
+        }
       }
 
-      // Adiciona funcionalidade de pesquisa no Google
-      const googleSearchInput = document.getElementById("googleSearchInput");
-      const googleSearchButton = document.getElementById("googleSearchButton");
-
-      googleSearchButton.addEventListener("click", performGoogleSearch);
-      googleSearchInput.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-          performGoogleSearch();
-        }
-      });
-
       function performGoogleSearch() {
-        const searchTerm = googleSearchInput.value.trim();
+        const searchTerm = lastSearchTerm || searchInput.value.trim();
         if (searchTerm) {
-          const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+          const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm + " programação")}`;
           window.open(googleSearchUrl, "_blank");
         }
       }
