@@ -24,6 +24,7 @@
       --warning: #ffba08;
       --meet: #00897b;
       --google: #DB4437;
+      --foco: #2E86AB;
     }
 
     body {
@@ -70,6 +71,7 @@
       opacity: 0.9;
       max-width: 600px;
       margin: 0 auto;
+      min-height: 60px;
     }
 
     .search-section {
@@ -192,6 +194,22 @@
       font-size: 2.8rem !important;
     }
 
+    .foco-icon {
+      color: var(--foco);
+      font-weight: bold;
+      position: relative;
+    }
+
+    .foco-icon::before {
+      content: "F";
+      font-size: 2.2rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--foco) 0%, #1B5299 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+    }
+
     .construct {
       color: #5e17eb;
     }
@@ -271,6 +289,37 @@
     .instructions li {
       margin-bottom: 10px;
     }
+    
+    .recent-tools {
+      margin-top: 30px;
+    }
+    
+    .recent-tools h3 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .recent-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .recent-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .recent-item:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
 
     @media (max-width: 768px) {
       .tools-grid {
@@ -297,6 +346,10 @@
       
       .search-btn {
         right: 60px;
+      }
+      
+      .recent-list {
+        justify-content: center;
       }
     }
 
@@ -349,17 +402,32 @@
           <i class="fab fa-google"></i> Google
         </button>
       </div>
-    </div>
-
-    <div class="tool-card" data-url="https://app.nutror.com/cursos" data-name="app nutror plataforma de aprendizado">
-      <div class="tool-icon">
-        <span class="nutror-icon">N</span>
+      
+      <div class="recent-tools">
+        <h3><i class="fas fa-history"></i> Ferramentas Recentes</h3>
+        <div class="recent-list" id="recentToolsList">
+          <!-- As ferramentas recentes serão adicionadas via JavaScript -->
+        </div>
       </div>
-      <h3>App Nutror</h3>
-      <p>Plataforma de aprendizado</p>
     </div>
 
     <div class="tools-grid">
+      <div class="tool-card" data-url="https://app.nutror.com/cursos" data-name="app nutror plataforma de aprendizado">
+        <div class="tool-icon">
+          <span class="nutror-icon">N</span>
+        </div>
+        <h3>App Nutror</h3>
+        <p>Plataforma de aprendizado</p>
+      </div>
+
+      <div class="tool-card" data-url="https://focoensino.curso.study/metodo/login.php" data-name="foco ensino plataforma de aprendizado">
+        <div class="tool-icon">
+          <span class="foco-icon"></span>
+        </div>
+        <h3>Foco Ensino</h3>
+        <p>Plataforma de aprendizado</p>
+      </div>
+
       <div class="tool-card" data-url="https://editor.construct.net/" data-name="construct criar jogos incríveis">
         <div class="tool-icon">
           <i class="fas fa-gamepad construct"></i>
@@ -457,13 +525,50 @@
       const googleFallbackSearch = document.getElementById("googleFallbackSearch");
       const noResults = document.getElementById("noResults");
       const toolCards = document.querySelectorAll(".tool-card");
+      const recentToolsList = document.getElementById("recentToolsList");
       let lastSearchTerm = "";
+      
+      // Carregar ferramentas recentes do localStorage
+      let recentTools = JSON.parse(localStorage.getItem('recentTools')) || [];
+
+      // Atualizar a lista de ferramentas recentes
+      function updateRecentToolsList() {
+        recentToolsList.innerHTML = '';
+        recentTools.slice(0, 5).forEach(tool => {
+          const item = document.createElement('div');
+          item.className = 'recent-item';
+          item.textContent = tool.name;
+          item.addEventListener('click', () => {
+            window.open(tool.url, '_blank');
+          });
+          recentToolsList.appendChild(item);
+        });
+      }
+      
+      // Adicionar uma ferramenta às recentes
+      function addToRecentTools(name, url) {
+        // Remover se já existir
+        recentTools = recentTools.filter(tool => tool.url !== url);
+        // Adicionar no início
+        recentTools.unshift({ name, url });
+        // Manter apenas as 5 mais recentes
+        recentTools = recentTools.slice(0, 5);
+        // Salvar no localStorage
+        localStorage.setItem('recentTools', JSON.stringify(recentTools));
+        // Atualizar a lista
+        updateRecentToolsList();
+      }
+
+      // Inicializar a lista de ferramentas recentes
+      updateRecentToolsList();
 
       // Adiciona evento de clique para todos os cards de ferramentas
       toolCards.forEach((card) => {
         card.addEventListener("click", function () {
           const url = this.getAttribute("data-url");
+          const name = this.querySelector("h3").textContent;
           if (url) {
+            addToRecentTools(name, url);
             window.open(url, "_blank");
           }
         });
