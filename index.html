@@ -23,6 +23,7 @@
       --success: #4cc9f0;
       --warning: #ffba08;
       --meet: #00897b;
+      --google: #4285F4;
     }
 
     body {
@@ -71,10 +72,35 @@
       margin: 0 auto;
     }
 
-    .search-bar {
-      max-width: 600px;
+    .search-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 800px;
       margin: 30px auto;
+    }
+
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-container h3 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar {
       position: relative;
+      width: 100%;
     }
 
     .search-bar input {
@@ -92,7 +118,6 @@
       right: 5px;
       top: 5px;
       border: none;
-      background: var(--primary);
       color: white;
       border-radius: 50px;
       padding: 10px 20px;
@@ -100,8 +125,20 @@
       transition: all 0.3s ease;
     }
 
-    .search-bar button:hover {
+    .portal-search button {
+      background: var(--primary);
+    }
+
+    .portal-search button:hover {
       background: var(--secondary);
+    }
+
+    .google-search button {
+      background: var(--google);
+    }
+
+    .google-search button:hover {
+      background: #356ac3;
     }
 
     .tools-grid {
@@ -233,6 +270,10 @@
       .subtitle {
         font-size: 1rem;
       }
+      
+      .search-section {
+        gap: 15px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -240,7 +281,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .search-bar {
+      .search-section {
         margin: 20px auto;
       }
     }
@@ -260,11 +301,26 @@
       </p>
     </header>
 
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Encontre uma ferramenta..." />
-      <button id="searchButton">
-        <i class="fas fa-search"></i> Pesquisar
-      </button>
+    <div class="search-section">
+      <div class="search-container portal-search">
+        <h3><i class="fas fa-search"></i> Pesquisar no Portal</h3>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Encontre uma ferramenta..." />
+          <button id="searchButton">
+            <i class="fas fa-search"></i> Pesquisar
+          </button>
+        </div>
+      </div>
+
+      <div class="search-container google-search">
+        <h3><i class="fab fa-google"></i> Pesquisar no Google</h3>
+        <div class="search-bar">
+          <input type="text" id="googleSearchInput" placeholder="Digite sua pesquisa para o Google..." />
+          <button id="googleSearchButton">
+            <i class="fab fa-google"></i> Google
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="tool-card" data-url="https://app.nutror.com/cursos">
@@ -291,14 +347,6 @@
         <h3>p5.js</h3>
         <p>Biblioteca criativa</p>
       </div>
-
-      <!-- <div class="tool-card" data-url="https://www.hotmart.com/">
-        <div class="tool-icon">
-          <i class="fas fa-graduation-cap hotmart"></i>
-        </div>
-        <h3>Hotmart</h3>
-        <p>Cursos e materiais</p>
-      </div> -->
 
       <div class="tool-card" data-url="https://codepen.io/your-work">
         <div class="tool-icon">
@@ -342,7 +390,7 @@
 
       <div class="tool-card" data-url="https://meet.google.com/landing">
         <div class="tool-icon">
-          <i class="fa fa-video-camera"></i>
+          <i class="fas fa-video meet"></i>
         </div>
         <h3>Google Meet</h3>
         <p>Aulas Digitais</p>
@@ -352,9 +400,8 @@
     <div class="instructions">
       <h2>Como usar este portal</h2>
       <ol>
-        <li>
-          Procure a ferramenta que você precisa usando a barra de pesquisa
-        </li>
+        <li>Use a barra de pesquisa do Google para buscar informações na web</li>
+        <li>Procure ferramentas específicas usando a barra de pesquisa do portal</li>
         <li>Clique no card da ferramenta para abri-la em uma nova aba</li>
         <li>Para voltar ao portal, basta fechar a aba da ferramenta</li>
         <li>
@@ -382,18 +429,18 @@
         });
       });
 
-      // Adiciona funcionalidade de pesquisa
+      // Adiciona funcionalidade de pesquisa no portal
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");
 
-      searchButton.addEventListener("click", performSearch);
+      searchButton.addEventListener("click", performPortalSearch);
       searchInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
-          performSearch();
+          performPortalSearch();
         }
       });
 
-      function performSearch() {
+      function performPortalSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
 
         toolCards.forEach((card) => {
@@ -409,6 +456,25 @@
             card.style.display = "none";
           }
         });
+      }
+
+      // Adiciona funcionalidade de pesquisa no Google
+      const googleSearchInput = document.getElementById("googleSearchInput");
+      const googleSearchButton = document.getElementById("googleSearchButton");
+
+      googleSearchButton.addEventListener("click", performGoogleSearch);
+      googleSearchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          performGoogleSearch();
+        }
+      });
+
+      function performGoogleSearch() {
+        const searchTerm = googleSearchInput.value.trim();
+        if (searchTerm) {
+          const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+          window.open(googleSearchUrl, "_blank");
+        }
       }
 
       // Adiciona efeito de digitação no subtítulo
@@ -433,5 +499,3 @@
 </body>
 
 </html>
-
-
