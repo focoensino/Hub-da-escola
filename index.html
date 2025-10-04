@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal da Escola de Programação</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{ }</text></svg>" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-
+    /* ===== VARIÁVEIS CSS ===== */
     :root {
+      /* Cores principais */
       --primary: #0ea5e9;
       --primary-glow: #0ea5e980;
       --secondary: #7e22ce;
       --accent: #ec4899;
       --accent-glow: #ec489980;
+      
+      /* Cores de fundo */
       --dark-bg: #0f172a;
       --darker-bg: #020617;
       --card-bg: #1e293b;
       --card-border: #334155;
+      
+      /* Cores de texto */
       --text: #f1f5f9;
       --text-muted: #94a3b8;
+      
+      /* Cores de ferramentas */
       --success: #22d3ee;
       --warning: #f59e0b;
       --meet: #0d9488;
@@ -38,44 +39,68 @@
       --firebase: #fbbf24;
       --github: #60a5fa;
       --drive: #22c55e;
+      
+      /* Bordas e sombras */
+      --border-radius: 16px;
+      --border-radius-sm: 8px;
+      --shadow: 0 10px 25px rgba(2, 6, 23, 0.5);
+      --shadow-hover: 0 15px 35px rgba(2, 6, 23, 0.7);
+      
+      /* Espaçamentos */
+      --spacing-xs: 5px;
+      --spacing-sm: 10px;
+      --spacing-md: 20px;
+      --spacing-lg: 30px;
+      --spacing-xl: 50px;
+    }
+
+    /* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
       background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
       color: var(--text);
       min-height: 100vh;
-      padding: 20px;
+      padding: var(--spacing-md);
+      line-height: 1.6;
     }
 
+    /* ===== LAYOUT PRINCIPAL ===== */
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
 
+    /* ===== CABEÇALHO ===== */
     header {
       text-align: center;
-      padding: 20px 0;
-      margin-bottom: 30px;
+      padding: var(--spacing-md) 0;
+      margin-bottom: var(--spacing-lg);
     }
 
     .logo {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 15px;
+      margin-bottom: var(--spacing-sm);
     }
 
     .logo-icon {
       font-size: 42px;
       font-weight: bold;
       color: var(--primary);
-      margin-right: 10px;
+      margin-right: var(--spacing-sm);
       text-shadow: 0 0 10px var(--primary-glow);
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin-bottom: var(--spacing-sm);
       background: linear-gradient(90deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -90,22 +115,23 @@
       min-height: 60px;
     }
 
+    /* ===== SEÇÃO DE PESQUISA ===== */
     .search-section {
       max-width: 700px;
-      margin: 30px auto;
+      margin: var(--spacing-lg) auto;
       background: rgba(30, 41, 59, 0.7);
       backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 25px;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
       border: 1px solid var(--card-border);
-      box-shadow: 0 10px 25px rgba(2, 6, 23, 0.5);
+      box-shadow: var(--shadow);
     }
 
     .search-section h3 {
-      margin-bottom: 15px;
+      margin-bottom: var(--spacing-sm);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--spacing-sm);
       color: var(--primary);
     }
 
@@ -176,17 +202,55 @@
       box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
     }
 
+    /* ===== FERRAMENTAS RECENTES ===== */
+    .recent-tools {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .recent-tools h3 {
+      margin-bottom: var(--spacing-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--primary);
+    }
+    
+    .recent-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
+    }
+    
+    .recent-item {
+      background: rgba(30, 41, 59, 0.8);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+    }
+    
+    .recent-item:hover {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* ===== GRADE DE FERRAMENTAS ===== */
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-xl);
     }
 
     .tool-card {
       background: var(--card-bg);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
       text-align: center;
       transition: all 0.3s ease;
       cursor: pointer;
@@ -206,7 +270,7 @@
       z-index: -1;
       background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
       background-size: 400% 400%;
-      border-radius: 18px;
+      border-radius: calc(var(--border-radius) + 2px);
       opacity: 0;
       transition: opacity 0.3s ease;
       animation: gradientShift 3s ease infinite;
@@ -214,7 +278,7 @@
 
     .tool-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(2, 6, 23, 0.5);
+      box-shadow: var(--shadow-hover);
     }
 
     .tool-card:hover::before {
@@ -232,7 +296,7 @@
 
     .tool-card h3 {
       font-size: 1rem;
-      margin-bottom: 10px;
+      margin-bottom: var(--spacing-sm);
       color: var(--text);
     }
 
@@ -241,6 +305,7 @@
       color: var(--text-muted);
     }
 
+    /* ===== ÍCONES PERSONALIZADOS ===== */
     .nutror-icon {
       font-weight: bold;
       color: var(--accent);
@@ -306,13 +371,14 @@
       text-shadow: 0 0 8px rgba(13, 148, 136, 0.6);
     }
 
+    /* ===== SEM RESULTADOS ===== */
     .no-results {
       text-align: center;
       grid-column: 1 / -1;
-      padding: 30px;
+      padding: var(--spacing-lg);
       background: var(--card-bg);
-      border-radius: 16px;
-      margin-top: 20px;
+      border-radius: var(--border-radius);
+      margin-top: var(--spacing-md);
       display: none;
       border: 1px solid var(--card-border);
     }
@@ -321,76 +387,42 @@
       display: block;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
+    /* ===== INSTRUÇÕES ===== */
     .instructions {
       background: var(--card-bg);
-      border-radius: 16px;
-      padding: 25px;
-      margin: 30px auto;
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      margin: var(--spacing-lg) auto;
       max-width: 800px;
       border: 1px solid var(--card-border);
     }
 
     .instructions h2 {
-      margin-bottom: 15px;
+      margin-bottom: var(--spacing-sm);
       text-align: center;
       color: var(--primary);
     }
 
     .instructions ol {
-      margin-left: 20px;
+      margin-left: var(--spacing-md);
       color: var(--text-muted);
     }
 
     .instructions li {
-      margin-bottom: 10px;
+      margin-bottom: var(--spacing-sm);
       line-height: 1.6;
     }
-    
-    .recent-tools {
-      margin-top: 30px;
-    }
-    
-    .recent-tools h3 {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary);
-    }
-    
-    .recent-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    
-    .recent-item {
-      background: rgba(30, 41, 59, 0.8);
-      padding: 8px 15px;
-      border-radius: 20px;
+
+    /* ===== RODAPÉ ===== */
+    footer {
+      text-align: center;
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-md);
       font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
       color: var(--text-muted);
-      border: 1px solid var(--card-border);
-    }
-    
-    .recent-item:hover {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 0 10px var(--primary-glow);
     }
 
-    /* Animações */
+    /* ===== ANIMAÇÕES ===== */
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -403,6 +435,7 @@
       100% { box-shadow: 0 0 5px var(--primary-glow); }
     }
 
+    /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 768px) {
       .tools-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -442,7 +475,7 @@
 
       .search-bar {
         flex-direction: column;
-        gap: 10px;
+        gap: var(--spacing-sm);
       }
       
       .search-bar input {
@@ -542,7 +575,7 @@
         <p>Desenvolvimento mobile</p>
       </div>
 
-      <div class="tool-card" data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdDE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1" data-name="firebase banco de dados em nuvem">
+      <div class="tool-card" data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdTE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1" data-name="firebase banco de dados em nuvem">
         <div class="tool-icon">
           <i class="fas fa-database firebase"></i>
         </div>
@@ -600,7 +633,9 @@
   </div>
 
   <script>
+    // ===== INICIALIZAÇÃO DO PORTAL =====
     document.addEventListener("DOMContentLoaded", function () {
+      // Elementos da DOM
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");
       const googleSearchButton = document.getElementById("googleSearchButton");
@@ -608,12 +643,16 @@
       const noResults = document.getElementById("noResults");
       const toolCards = document.querySelectorAll(".tool-card");
       const recentToolsList = document.getElementById("recentToolsList");
-      let lastSearchTerm = "";
       
-      // Carregar ferramentas recentes do localStorage
+      // Variáveis de estado
+      let lastSearchTerm = "";
       let recentTools = JSON.parse(localStorage.getItem('recentTools')) || [];
 
-      // Atualizar a lista de ferramentas recentes
+      // ===== FUNÇÕES DE GERENCIAMENTO DE FERRAMENTAS RECENTES =====
+      
+      /**
+       * Atualiza a lista de ferramentas recentes na interface
+       */
       function updateRecentToolsList() {
         recentToolsList.innerHTML = '';
         recentTools.slice(0, 5).forEach(tool => {
@@ -627,53 +666,35 @@
         });
       }
       
-      // Adicionar uma ferramenta às recentes
+      /**
+       * Adiciona uma ferramenta à lista de recentes
+       * @param {string} name - Nome da ferramenta
+       * @param {string} url - URL da ferramenta
+       */
       function addToRecentTools(name, url) {
-        // Remover se já existir
+        // Remove se já existir
         recentTools = recentTools.filter(tool => tool.url !== url);
-        // Adicionar no início
+        // Adiciona no início
         recentTools.unshift({ name, url });
-        // Manter apenas as 5 mais recentes
+        // Mantém apenas as 5 mais recentes
         recentTools = recentTools.slice(0, 5);
-        // Salvar no localStorage
+        // Salva no localStorage
         localStorage.setItem('recentTools', JSON.stringify(recentTools));
-        // Atualizar a lista
+        // Atualiza a lista
         updateRecentToolsList();
       }
 
-      // Inicializar a lista de ferramentas recentes
-      updateRecentToolsList();
-
-      // Adiciona evento de clique para todos os cards de ferramentas
-      toolCards.forEach((card) => {
-        card.addEventListener("click", function () {
-          const url = this.getAttribute("data-url");
-          const name = this.querySelector("h3").textContent;
-          if (url) {
-            addToRecentTools(name, url);
-            window.open(url, "_blank");
-          }
-        });
-      });
-
-      // Pesquisa na plataforma
-      searchButton.addEventListener("click", performPortalSearch);
-      searchInput.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-          performPortalSearch();
-        }
-      });
-
-      // Pesquisa no Google
-      googleSearchButton.addEventListener("click", performGoogleSearch);
-      googleFallbackSearch.addEventListener("click", performGoogleSearch);
-
+      // ===== FUNÇÕES DE PESQUISA =====
+      
+      /**
+       * Realiza a pesquisa no portal
+       */
       function performPortalSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         lastSearchTerm = searchTerm;
         
+        // Se não há termo de pesquisa, mostra todas as ferramentas
         if (!searchTerm) {
-          // Se não há termo de pesquisa, mostra todas as ferramentas
           toolCards.forEach((card) => {
             card.style.display = "block";
           });
@@ -683,6 +704,7 @@
 
         let found = false;
         
+        // Filtra as ferramentas com base no termo de pesquisa
         toolCards.forEach((card) => {
           const toolData = card.getAttribute("data-name").toLowerCase();
           const toolName = card.querySelector("h3").textContent.toLowerCase();
@@ -708,6 +730,9 @@
         }
       }
 
+      /**
+       * Realiza a pesquisa no Google
+       */
       function performGoogleSearch() {
         const searchTerm = lastSearchTerm || searchInput.value.trim();
         if (searchTerm) {
@@ -716,7 +741,36 @@
         }
       }
 
-      // Adiciona efeito de digitação no subtítulo
+      // ===== INICIALIZAÇÃO =====
+      
+      // Inicializa a lista de ferramentas recentes
+      updateRecentToolsList();
+
+      // Adiciona evento de clique para todos os cards de ferramentas
+      toolCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const url = this.getAttribute("data-url");
+          const name = this.querySelector("h3").textContent;
+          if (url) {
+            addToRecentTools(name, url);
+            window.open(url, "_blank");
+          }
+        });
+      });
+
+      // Eventos de pesquisa
+      searchButton.addEventListener("click", performPortalSearch);
+      searchInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          performPortalSearch();
+        }
+      });
+
+      // Eventos de pesquisa no Google
+      googleSearchButton.addEventListener("click", performGoogleSearch);
+      googleFallbackSearch.addEventListener("click", performGoogleSearch);
+
+      // ===== EFEITO DE DIGITAÇÃO NO SUBTÍTULO =====
       const subtitleText =
         "Um lugar para acessar todas as ferramentas que usamos em nossas aulas de programação!";
       const subtitleElement = document.querySelector(".subtitle");
@@ -736,6 +790,4 @@
     });
   </script>
 </body>
-
 </html>
-
