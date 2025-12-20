@@ -46,6 +46,8 @@
       --breakout: #8b5cf6;
       --javascript: #f0db4f;
       --js-glow: rgba(240, 219, 79, 0.6);
+      --js-list: #61dbfb;
+      --js-list-glow: rgba(97, 219, 251, 0.6);
       
       /* Bordas e sombras */
       --border-radius: 16px;
@@ -401,6 +403,11 @@
     .javascript {
       color: var(--javascript);
       text-shadow: 0 0 8px var(--js-glow);
+    }
+
+    .js-list {
+      color: var(--js-list);
+      text-shadow: 0 0 8px var(--js-list-glow);
     }
 
     /* ===== SEM RESULTADOS ===== */
@@ -781,13 +788,22 @@
           <p>Jogo completo BreakOut</p>
         </div>
         
-        <!-- EXERCÍCIOS JAVASCRIPT -->
+        <!-- EXERCÍCIOS JAVASCRIPT - REPOSITÓRIO -->
         <div class="pdf-card" data-url="https://github.com/focoensino/Exercicios-Javascritp">
           <div class="pdf-icon">
             <i class="fab fa-js javascript"></i>
           </div>
           <h3>Exercícios JS</h3>
-          <p>Lista de exercícios JavaScript</p>
+          <p>Repositório GitHub</p>
+        </div>
+        
+        <!-- EXERCÍCIOS JAVASCRIPT - LISTA ONLINE -->
+        <div class="pdf-card" data-url="https://focoensino.github.io/Exercicios-Javascritp/exercicios/">
+          <div class="pdf-icon">
+            <i class="fas fa-list-check js-list"></i>
+          </div>
+          <h3>Lista Exercícios JS</h3>
+          <p>Exercícios online</p>
         </div>
       </div>
     </div>
