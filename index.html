@@ -44,6 +44,8 @@
       --pdf: #f43f5e;
       --trex: #f59e0b;
       --breakout: #8b5cf6;
+      --javascript: #f0db4f;
+      --js-glow: rgba(240, 219, 79, 0.6);
       
       /* Bordas e sombras */
       --border-radius: 16px;
@@ -396,6 +398,11 @@
       text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
     }
 
+    .javascript {
+      color: var(--javascript);
+      text-shadow: 0 0 8px var(--js-glow);
+    }
+
     /* ===== SEM RESULTADOS ===== */
     .no-results {
       text-align: center;
@@ -728,9 +735,9 @@
       </button>
     </div>
 
-    <!-- SEÇÃO PDF ATUALIZADA -->
+    <!-- SEÇÃO PDF ATUALIZADA COM EXERCÍCIOS JS -->
     <div class="pdf-section">
-      <h2><i class="fas fa-file-pdf"></i> PDFs das Aulas - Jogos p5.js</h2>
+      <h2><i class="fas fa-file-pdf"></i> PDFs das Aulas e Exercícios</h2>
       <div class="pdf-grid">
         <!-- T-REX AULAS -->
         <div class="pdf-card" data-url="https://drive.google.com/file/d/1BHC5_qYXj70iPQhvzqEkAMrfKEJA6s0V/view?usp=drive_link">
@@ -772,6 +779,15 @@
           </div>
           <h3>BreakOut</h3>
           <p>Jogo completo BreakOut</p>
+        </div>
+        
+        <!-- EXERCÍCIOS JAVASCRIPT -->
+        <div class="pdf-card" data-url="https://github.com/focoensino/Exercicios-Javascritp">
+          <div class="pdf-icon">
+            <i class="fab fa-js javascript"></i>
+          </div>
+          <h3>Exercícios JS</h3>
+          <p>Lista de exercícios JavaScript</p>
         </div>
       </div>
     </div>
