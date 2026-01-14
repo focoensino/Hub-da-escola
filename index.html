@@ -18,6 +18,7 @@
             --secondary: #7e22ce;
             --accent: #ec4899;
             --accent-glow: #ec489980;
+            --coliseum: #d97706; /* NOVA COR PARA O COLISEUM */
 
             /* Cores de fundo */
             --dark-bg: #0f172a;
@@ -413,6 +414,12 @@
             text-shadow: 0 0 8px var(--js-list-glow);
         }
 
+        /* ===== NOVO ÍCONE COLISEUM ===== */
+        .coliseum {
+            color: var(--coliseum);
+            text-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+        }
+
         /* ===== SEM RESULTADOS ===== */
         .no-results {
             text-align: center;
@@ -667,21 +674,21 @@
                 <p>Resumo e aprendizado</p>
             </div>
 
+            <!-- NOVO CARD: COLISEUM -->
+            <div class="tool-card" data-url="https://coliseum-ebon.vercel.app/menu" data-name="coliseum plataforma de cursos gamificada">
+                <div class="tool-icon">
+                    <i class="fas fa-landmark coliseum"></i>
+                </div>
+                <h3>Coliseum</h3>
+                <p>Plataforma de cursos gamificada</p>
+            </div>
+
             <div class="tool-card" data-url="https://app.invntor.com/" data-name="invntor app de inventário">
                 <div class="tool-icon">
                     <i class="fas fa-boxes invntor"></i>
                 </div>
                 <h3>Invntor</h3>
                 <p>App de inventário</p>
-            </div>
-
-            <div class="tool-card" data-url="https://focoensino.curso.study/metodo/login.php"
-                data-name="foco ensino plataforma de aprendizado">
-                <div class="tool-icon">
-                    <span class="foco-icon"></span>
-                </div>
-                <h3>Foco Ensino</h3>
-                <p>Plataforma de aprendizado</p>
             </div>
 
             <div class="tool-card"
