@@ -4,40 +4,42 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portal da Escola de Programação</title>
+    <title>Hub FOCO ENSINO | Portal de Ferramentas Educacionais</title>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{ }</text></svg>"
         type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-        /* ===== VARIÁVEIS CSS ===== */
+        /* ===== VARIÁVEIS CSS ATUALIZADAS ===== */
         :root {
-            /* Cores principais */
+            /* Sistema de cores principal - Gradiente azul/roxo */
             --primary: #0ea5e9;
-            --primary-glow: #0ea5e980;
+            --primary-dark: #0284c7;
             --secondary: #7e22ce;
+            --secondary-dark: #6b21a8;
             --accent: #ec4899;
-            --accent-glow: #ec489980;
-            --coliseum: #d97706;
-            --arduino: #00979d; /* NOVA COR PARA O ARDUINO - VERDE AZULADO */
-            --arduino-glow: rgba(0, 151, 157, 0.6); /* GLOW DO ARDUINO */
+            --accent-dark: #db2777;
+            --success: #22d3ee;
+            --warning: #f59e0b;
+            --danger: #ef4444;
 
             /* Cores de fundo */
             --dark-bg: #0f172a;
             --darker-bg: #020617;
             --card-bg: #1e293b;
-            --card-border: #334155;
+            --card-hover: #334155;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.15);
 
             /* Cores de texto */
             --text: #f1f5f9;
             --text-muted: #94a3b8;
+            --text-light: #cbd5e1;
 
-            /* Cores de ferramentas */
-            --success: #22d3ee;
-            --warning: #f59e0b;
-            --meet: #0d9488;
-            --google: #ef4444;
-            --foco: #3b82f6;
+            /* Cores específicas para ferramentas */
+            --coliseum: #d97706;
+            --arduino: #00979d;
             --construct: #8b5cf6;
             --p5js: #f472b6;
             --codepen: #10b981;
@@ -45,489 +47,540 @@
             --firebase: #fbbf24;
             --github: #60a5fa;
             --drive: #22c55e;
+            --meet: #0d9488;
             --robotica: #f97316;
             --invntor: #06b6d4;
-            --pdf: #f43f5e;
-            --trex: #f59e0b;
-            --breakout: #8b5cf6;
             --javascript: #f0db4f;
-            --js-glow: rgba(240, 219, 79, 0.6);
-            --js-list: #61dbfb;
-            --js-list-glow: rgba(97, 219, 251, 0.6);
+            --javascript-dark: #f7df1e;
             --kwiter: #00c1d4;
-            --kwiter-glow: rgba(0, 193, 212, 0.6);
-            --trash: #22d3ee; /* COR PARA LIXEIRA AUTOMÁTICA - CIANO */
-            --trash-glow: rgba(34, 211, 238, 0.6); /* GLOW DA LIXEIRA */
+            --trash: #22d3ee;
 
-            /* Bordas e sombras */
-            --border-radius: 16px;
-            --border-radius-sm: 8px;
+            /* Efeitos visuais */
+            --glow-primary: 0 0 20px rgba(14, 165, 233, 0.4);
+            --glow-secondary: 0 0 20px rgba(126, 34, 206, 0.4);
+            --glow-accent: 0 0 20px rgba(236, 72, 153, 0.4);
             --shadow: 0 10px 25px rgba(2, 6, 23, 0.5);
             --shadow-hover: 0 15px 35px rgba(2, 6, 23, 0.7);
 
+            /* Layout */
+            --border-radius: 16px;
+            --border-radius-sm: 10px;
+            --border-radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
             /* Espaçamentos */
-            --spacing-xs: 5px;
-            --spacing-sm: 10px;
-            --spacing-md: 20px;
-            --spacing-lg: 30px;
-            --spacing-xl: 50px;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            --space-2xl: 4rem;
         }
 
-        /* ===== RESET E CONFIGURAÇÕES GLOBAIS ===== */
+        /* ===== RESET E BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
             color: var(--text);
             min-height: 100vh;
-            padding: var(--spacing-md);
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(126, 34, 206, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
 
         /* ===== LAYOUT PRINCIPAL ===== */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: var(--space-md);
+            position: relative;
+            z-index: 1;
         }
 
-        /* ===== CABEÇALHO ===== */
+        /* ===== CABEÇALHO ATUALIZADO ===== */
         header {
             text-align: center;
-            padding: var(--spacing-md) 0;
-            margin-bottom: var(--spacing-lg);
+            padding: var(--space-xl) 0 var(--space-lg);
+            position: relative;
+            margin-bottom: var(--space-lg);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: var(--spacing-sm);
+            gap: var(--space-sm);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover), var(--glow-primary);
         }
 
         .logo-icon {
-            font-size: 42px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-right: var(--spacing-sm);
-            text-shadow: 0 0 10px var(--primary-glow);
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-primary);
         }
 
-        h1 {
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo-text h1 {
             font-size: 2.5rem;
-            margin-bottom: var(--spacing-sm);
+            font-weight: 800;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            margin: 0;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
+        .logo-text .tagline {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            min-height: 60px;
+            margin-top: 2px;
         }
 
-        /* ===== SEÇÃO DE PESQUISA ===== */
-        .search-section {
-            max-width: 700px;
-            margin: var(--spacing-lg) auto;
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow);
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+            flex-wrap: wrap;
         }
 
-        .search-section h3 {
-            margin-bottom: var(--spacing-sm);
+        .status-item {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
+            gap: var(--space-xs);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .status-item i {
+            color: var(--success);
+        }
+
+        .status-item .count {
+            font-weight: bold;
             color: var(--primary);
+        }
+
+        /* ===== BARRA DE PESQUISA ATUALIZADA ===== */
+        .search-section {
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .search-header h3 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .search-header h3 i {
+            color: var(--primary);
+        }
+
+        .search-stats {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-md);
         }
 
         .search-bar {
-            display: flex;
             position: relative;
-            width: 100%;
+            display: flex;
+            gap: var(--space-sm);
         }
 
-        .search-bar input {
+        .search-input-wrapper {
             flex: 1;
-            padding: 15px 130px 15px 20px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 130px 18px 20px;
             border: none;
-            border-radius: 50px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            background: var(--darker-bg);
+            background: rgba(2, 6, 23, 0.8);
             color: var(--text);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
             outline: none;
-            transition: all 0.3s ease;
         }
 
-        .search-bar input:focus {
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px var(--primary-glow);
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
         }
 
-        .search-bar input::placeholder {
+        .search-input::placeholder {
             color: var(--text-muted);
+        }
+
+        .search-buttons {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 10px;
         }
 
         .search-btn {
-            position: absolute;
-            right: 70px;
-            top: 5px;
+            padding: 10px 20px;
             border: none;
-            background: var(--primary);
-            color: white;
-            border-radius: 50px;
-            padding: 10px 15px;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .google-btn {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            border: none;
-            background: var(--google);
-            color: white;
-            border-radius: 50px;
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
-        }
-
-        .search-btn:hover {
-            background: #0284c7;
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .google-btn:hover {
-            background: #dc2626;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
-        }
-
-        /* ===== FERRAMENTAS RECENTES ===== */
-        .recent-tools {
-            margin-top: var(--spacing-lg);
-        }
-
-        .recent-tools h3 {
-            margin-bottom: var(--spacing-sm);
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-portal {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-google {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-google:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        /* ===== FILTROS RÁPIDOS ===== */
+        .quick-filters {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        /* ===== SEÇÃO DE FERRAMENTAS RECENTES ===== */
+        .recent-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            margin-bottom: var(--space-xl);
+            border: 1px solid var(--glass-border);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-header h3 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--text);
+        }
+
+        .section-header h3 i {
             color: var(--primary);
         }
 
-        .recent-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-sm);
-        }
-
-        .recent-item {
-            background: rgba(30, 41, 59, 0.8);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .clear-recent {
+            background: transparent;
+            border: 1px solid var(--glass-border);
             color: var(--text-muted);
-            border: 1px solid var(--card-border);
+            padding: 6px 12px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .recent-item:hover {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 0 10px var(--primary-glow);
+        .clear-recent:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-color: var(--danger);
         }
 
-        /* ===== GRADE DE FERRAMENTAS ===== */
+        .recent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--space-sm);
+        }
+
+        /* ===== GRADE DE FERRAMENTAS PRINCIPAIS ===== */
+        .tools-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .tools-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: var(--space-lg);
+            color: var(--text);
+            position: relative;
+            padding-left: var(--space-md);
+        }
+
+        .tools-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--space-md);
         }
 
+        /* ===== CARD DE FERRAMENTA ===== */
         .tool-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            text-align: center;
-            transition: all 0.3s ease;
+            padding: var(--space-md);
+            transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--card-border);
-            box-shadow: 0 8px 16px rgba(2, 6, 23, 0.3);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .tool-card::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            z-index: -1;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
-            background-size: 400% 400%;
-            border-radius: calc(var(--border-radius) + 2px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: gradientShift 3s ease infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .tool-card:hover::before {
+            left: 100%;
         }
 
         .tool-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover), var(--glow-primary);
         }
 
-        .tool-card:hover::before {
-            opacity: 1;
+        .tool-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+        }
+
+        .tool-card-badge {
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
         }
 
         .tool-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            width: 60px;
             height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .tool-card h3 {
-            font-size: 1rem;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text);
-        }
-
-        .tool-card p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* ===== ÍCONES PERSONALIZADOS ===== */
-        .nutror-icon {
-            font-weight: bold;
-            color: var(--accent);
-            font-size: 2.8rem !important;
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .foco-icon {
-            font-weight: bold;
-            position: relative;
-        }
-
-        .foco-icon::before {
-            content: "F";
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: var(--foco);
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-        }
-
-        .construct {
-            color: var(--construct);
-            text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
-        }
-
-        .p5js {
-            color: var(--p5js);
-            text-shadow: 0 0 8px rgba(244, 114, 182, 0.6);
-        }
-
-        .hotmart {
-            color: var(--warning);
-            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
-        }
-
-        .codepen {
-            color: var(--codepen);
-            text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
-        }
-
-        .expo {
-            color: var(--expo);
-            text-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
-        }
-
-        .firebase {
-            color: var(--firebase);
-            text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
-        }
-
-        .github {
-            color: var(--github);
-            text-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
-        }
-
-        .drive {
-            color: var(--drive);
-            text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-        }
-
-        .meet {
-            color: var(--meet);
-            text-shadow: 0 0 8px rgba(13, 148, 136, 0.6);
-        }
-
-        .robotica {
-            color: var(--robotica);
-            text-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
-        }
-
-        .invntor {
-            color: var(--invntor);
-            text-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
-        }
-
-        .trex {
-            color: var(--trex);
-            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
-        }
-
-        .breakout {
-            color: var(--breakout);
-            text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
-        }
-
-        .javascript {
-            color: var(--javascript);
-            text-shadow: 0 0 8px var(--js-glow);
-        }
-
-        .js-list {
-            color: var(--js-list);
-            text-shadow: 0 0 8px var(--js-list-glow);
-        }
-
-        .coliseum {
-            color: var(--coliseum);
-            text-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
-        }
-
-        .kwiter {
-            color: var(--kwiter);
-            text-shadow: 0 0 8px var(--kwiter-glow);
-            font-weight: bold;
-        }
-
-        /* ===== NOVO ÍCONE ARDUINO ===== */
-        .arduino {
-            color: var(--arduino);
-            text-shadow: 0 0 8px var(--arduino-glow);
-        }
-
-        /* ===== NOVO ÍCONE LIXEIRA AUTOMÁTICA ===== */
-        .trash {
-            color: var(--trash);
-            text-shadow: 0 0 8px var(--trash-glow);
-        }
-
-        /* ===== SEM RESULTADOS ===== */
-        .no-results {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: var(--spacing-lg);
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            margin-top: var(--spacing-md);
-            display: none;
-            border: 1px solid var(--card-border);
-        }
-
-        .no-results.show {
-            display: block;
-        }
-
-        /* ===== SEÇÃO PDF ===== */
-        .pdf-section {
-            margin-top: var(--spacing-xl);
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--card-border);
-        }
-
-        .pdf-section h2 {
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-sm);
-        }
-
-        .pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: var(--spacing-md);
-        }
-
-        .pdf-card {
-            background: rgba(30, 41, 59, 0.7);
             border-radius: var(--border-radius-sm);
-            padding: var(--spacing-md);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid var(--card-border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 120px;
-        }
-
-        .pdf-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        .pdf-icon {
+            margin-bottom: var(--space-sm);
             font-size: 2rem;
-            margin-bottom: var(--spacing-sm);
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .pdf-card h3 {
+        .tool-info {
+            flex: 1;
+        }
+
+        .tool-info h3 {
             font-size: 1rem;
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: 5px;
             color: var(--text);
         }
 
-        .pdf-card p {
-            font-size: 0.8rem;
+        .tool-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: var(--space-sm);
+        }
+
+        .tool-tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .tool-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             color: var(--text-muted);
         }
 
-        /* ===== NOVA SEÇÃO ARDUINO ===== */
+        /* ===== CORES ESPECÍFICAS DOS ÍCONES ===== */
+        .nutror-icon {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: bold;
+            font-size: 2rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .coliseum { color: var(--coliseum); }
+        .construct { color: var(--construct); }
+        .p5js { color: var(--p5js); }
+        .codepen { color: var(--codepen); }
+        .expo { color: var(--expo); }
+        .firebase { color: var(--firebase); }
+        .github { color: var(--github); }
+        .drive { color: var(--drive); }
+        .meet { color: var(--meet); }
+        .robotica { color: var(--robotica); }
+        .invntor { color: var(--invntor); }
+        .arduino { color: var(--arduino); }
+        .javascript { color: var(--javascript); }
+        .kwiter { 
+            background: linear-gradient(135deg, var(--kwiter), #0091a8);
+            color: white;
+            font-weight: bold;
+        }
+        .trash { color: var(--trash); }
+
+        /* ===== SEÇÃO ARDUINO ===== */
         .arduino-section {
-            margin-top: var(--spacing-xl);
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-lg);
-            border: 1px solid var(--card-border);
+            background: linear-gradient(135deg, rgba(0, 151, 157, 0.1), rgba(2, 6, 23, 0.8));
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border: 1px solid rgba(0, 151, 157, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -540,208 +593,337 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--arduino), var(--success));
-            z-index: 1;
         }
 
-        .arduino-section h2 {
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-            color: var(--arduino);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--spacing-sm);
+        /* ===== SEÇÃO DE MATERIAIS ===== */
+        .materials-section {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(2, 6, 23, 0.8));
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            border: 1px solid var(--glass-border);
         }
 
-        .arduino-grid {
+        .materials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: var(--spacing-md);
+            gap: var(--space-md);
         }
 
-        .arduino-card {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: var(--border-radius-sm);
-            padding: var(--spacing-md);
-            text-align: center;
-            transition: all 0.3s ease;
+        .material-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: var(--border-radius);
+            padding: var(--space-md);
+            transition: var(--transition);
             cursor: pointer;
             border: 1px solid var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 120px;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .arduino-card:hover {
+        .material-card:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow);
-            background: rgba(30, 41, 59, 0.9);
-            border-color: var(--arduino);
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
         }
 
-        .arduino-card::before {
-            content: '';
+        .material-card::after {
+            content: 'PDF';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--arduino), var(--success));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: 10px;
+            right: 10px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: bold;
         }
 
-        .arduino-card:hover::before {
-            opacity: 1;
+        .material-card.repo::after {
+            content: 'GitHub';
+            background: var(--github);
         }
 
-        .arduino-icon {
-            font-size: 2rem;
-            margin-bottom: var(--spacing-sm);
+        .material-card.exercises::after {
+            content: 'Exercícios';
+            background: var(--warning);
         }
 
-        .arduino-card h3 {
-            font-size: 1rem;
-            margin-bottom: var(--spacing-xs);
-            color: var(--text);
+        /* ===== MENSAGEM SEM RESULTADOS ===== */
+        .no-results {
+            text-align: center;
+            padding: var(--space-xl);
+            background: var(--glass-bg);
+            border-radius: var(--border-radius);
+            margin: var(--space-lg) 0;
+            display: none;
+            border: 1px solid var(--glass-border);
         }
 
-        .arduino-card p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        .no-results.show {
+            display: block;
         }
 
         /* ===== INSTRUÇÕES ===== */
         .instructions {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            margin: var(--spacing-lg) auto;
-            max-width: 800px;
-            border: 1px solid var(--card-border);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(2, 6, 23, 0.8));
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border: 1px solid var(--glass-border);
         }
 
         .instructions h2 {
-            margin-bottom: var(--spacing-sm);
             text-align: center;
+            margin-bottom: var(--space-lg);
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .instruction-card {
+            text-align: center;
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .instruction-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .instruction-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-md);
             color: var(--primary);
         }
 
-        .instructions ol {
-            margin-left: var(--spacing-md);
-            color: var(--text-muted);
+        .instruction-card h3 {
+            margin-bottom: var(--space-sm);
+            color: var(--text);
         }
 
-        .instructions li {
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.6;
+        .instruction-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         /* ===== RODAPÉ ===== */
         footer {
             text-align: center;
-            margin-top: var(--spacing-xl);
-            padding: var(--spacing-md);
-            font-size: 0.9rem;
+            padding: var(--space-lg) 0;
+            margin-top: var(--space-xl);
+            border-top: 1px solid var(--glass-border);
             color: var(--text-muted);
         }
 
-        /* ===== ANIMAÇÕES ===== */
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-sm);
         }
 
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 5px var(--primary-glow);
-            }
+        .footer-links {
+            display: flex;
+            gap: var(--space-md);
+            margin: var(--space-sm) 0;
+        }
 
-            50% {
-                box-shadow: 0 0 20px var(--primary-glow);
-            }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
 
-            100% {
-                box-shadow: 0 0 5px var(--primary-glow);
-            }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+        }
+
+        /* ===== BOTÃO VOLTAR AO TOPO ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            box-shadow: var(--glow-primary);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* ===== MODAL DE DETALHES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--dark-bg);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-lg);
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--danger);
         }
 
         /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 1024px) {
+            .tools-grid, .materials-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
-            .tools-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 15px;
+            .container {
+                padding: var(--space-sm);
             }
 
-            .pdf-grid, .arduino-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-
-            h1 {
+            .logo-text h1 {
                 font-size: 2rem;
             }
 
-            .subtitle {
-                font-size: 1rem;
+            .tools-grid, .materials-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
 
-            .search-bar input {
-                padding-right: 110px;
+            .search-input {
+                padding-right: 120px;
             }
 
-            .search-btn,
-            .google-btn {
-                padding: 10px 12px;
-                font-size: 0.8rem;
+            .search-buttons {
+                flex-direction: column;
+                gap: 5px;
             }
 
             .search-btn {
-                right: 60px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
             }
 
-            .recent-list {
-                justify-content: center;
+            .instructions-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .tools-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .logo {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .pdf-grid, .arduino-grid {
+            .logo-text {
+                align-items: center;
+            }
+
+            .tools-grid, .materials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .search-bar {
                 flex-direction: column;
-                gap: var(--spacing-sm);
             }
 
-            .search-bar input {
-                padding: 12px 20px;
-                border-radius: 50px;
-            }
-
-            .search-btn,
-            .google-btn {
-                position: static;
+            .search-input-wrapper {
                 width: 100%;
-                border-radius: 50px;
-                padding: 12px;
+            }
+
+            .search-buttons {
+                position: static;
+                flex-direction: row;
+                margin-top: 10px;
+                transform: none;
+            }
+
+            .search-input {
+                padding-right: 20px;
             }
         }
     </style>
@@ -749,325 +931,606 @@
 
 <body>
     <div class="container">
+        <!-- CABEÇALHO -->
         <header>
-            <div class="logo">
-                <div class="logo-icon">{ }</div>
-                <h1>HUB FOCO ENSINO</h1>
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-icon">{ }</div>
+                    <div class="logo-text">
+                        <h1>HUB FOCO ENSINO</h1>
+                        <span class="tagline">Tecnologia & Inovação Educacional</span>
+                    </div>
+                </div>
+                
+                <div class="status-bar">
+                    <div class="status-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><span class="count">24</span> Ferramentas Ativas</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-users"></i>
+                        <span>Acesso para <span class="count">Todos</span> os Alunos</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Atualizado <span class="count">Diariamente</span></span>
+                    </div>
+                </div>
             </div>
-            <p class="subtitle">
-                Um lugar para acessar todas as ferramentas que usamos em nossas aulas
-                de programação!
-            </p>
         </header>
 
-        <div class="search-section">
-            <h3><i class="fas fa-search"></i> Pesquisa Integrada</h3>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Digite o nome de uma ferramenta..." />
-                <button class="search-btn" id="searchButton">
-                    <i class="fas fa-search"></i> Portal
-                </button>
-                <button class="google-btn" id="googleSearchButton">
-                    <i class="fab fa-google"></i> Google
-                </button>
-            </div>
-
-            <div class="recent-tools">
-                <h3><i class="fas fa-history"></i> Ferramentas Recentes</h3>
-                <div class="recent-list" id="recentToolsList">
-                    <!-- As ferramentas recentes serão adicionadas via JavaScript -->
+        <!-- BARRA DE PESQUISA -->
+        <section class="search-section">
+            <div class="search-header">
+                <h3><i class="fas fa-search"></i> Busca Inteligente</h3>
+                <div class="search-stats">
+                    <span id="toolCount">24 ferramentas disponíveis</span>
                 </div>
             </div>
-        </div>
 
-        <div class="tools-grid">
-            <!-- APP NUTROR ATUALIZADO -->
-            <div class="tool-card" data-url="https://app.nutror.com/resumo">
-                <div class="tool-icon">
-                    <span class="nutror-icon">N</span>
+            <div class="search-container">
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <input type="text" 
+                               id="searchInput" 
+                               class="search-input" 
+                               placeholder="Digite o nome da ferramenta, aula ou material..." 
+                               autocomplete="off">
+                        <div class="search-buttons">
+                            <button class="search-btn btn-portal" id="searchButton">
+                                <i class="fas fa-search"></i> Portal
+                            </button>
+                            <button class="search-btn btn-google" id="googleSearchButton">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <h3>App Nutror</h3>
-                <p>Resumo e aprendizado</p>
+
+                <div class="quick-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="dev">Desenvolvimento</button>
+                    <button class="filter-btn" data-filter="arduino">Arduino</button>
+                    <button class="filter-btn" data-filter="pdf">Materiais</button>
+                    <button class="filter-btn" data-filter="games">Jogos</button>
+                    <button class="filter-btn" data-filter="tools">Ferramentas</button>
+                </div>
             </div>
 
-            <!-- NOVO CARD: COLISEUM -->
-            <div class="tool-card" data-url="https://coliseum-ebon.vercel.app/menu" data-name="coliseum plataforma de cursos gamificada">
-                <div class="tool-icon">
-                    <i class="fas fa-landmark coliseum"></i>
+            <!-- FERRAMENTAS RECENTES -->
+            <div class="recent-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-history"></i> Acessados Recentemente</h3>
+                    <button class="clear-recent" id="clearRecent">
+                        <i class="fas fa-trash-alt"></i> Limpar
+                    </button>
                 </div>
-                <h3>Coliseum</h3>
-                <p>Plataforma de cursos gamificada</p>
-            </div>
-
-            <div class="tool-card" data-url="https://app.invntor.com/" data-name="invntor app de inventário">
-                <div class="tool-icon">
-                    <i class="fas fa-boxes invntor"></i>
+                <div class="recent-grid" id="recentToolsList">
+                    <!-- Gerado dinamicamente -->
                 </div>
-                <h3>Invntor</h3>
-                <p>App de inventário</p>
             </div>
+        </section>
 
-            <div class="tool-card"
-                data-url="https://minhaescoladerobotica.club.hotmart.com/t/page/n2OM2pGr46?role=OWNER&classHash=DPeAdywX4W"
-                data-name="escola de robótica hotmart plataforma de cursos">
-                <div class="tool-icon">
-                    <i class="fas fa-robot robotica"></i>
+        <!-- SEÇÃO PRINCIPAL DE FERRAMENTAS -->
+        <section class="tools-section">
+            <h2>Ferramentas Principais</h2>
+            <div class="tools-grid" id="mainToolsGrid">
+                <!-- App Nutror -->
+                <div class="tool-card fade-in" data-categories="dev tools" 
+                     data-url="https://app.nutror.com/resumo"
+                     data-name="app nutror resumo aprendizado">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <span class="nutror-icon">N</span>
+                        </div>
+                        <span class="tool-card-badge">Novo</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>App Nutror</h3>
+                        <p>Resumo e acompanhamento de aprendizado</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Educação</span>
+                            <span class="tool-tag">Acompanhamento</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Escola de Robótica</h3>
-                <p>Plataforma de cursos</p>
-            </div>
 
-            <div class="tool-card" data-url="https://editor.construct.net/" data-name="construct criar jogos incríveis">
-                <div class="tool-icon">
-                    <i class="fas fa-gamepad construct"></i>
+                <!-- Coliseum -->
+                <div class="tool-card fade-in" data-categories="games dev"
+                     data-url="https://coliseum-ebon.vercel.app/menu"
+                     data-name="coliseum plataforma cursos gamificada">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-landmark coliseum"></i>
+                        </div>
+                        <span class="tool-card-badge">Gamificação</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Coliseum</h3>
+                        <p>Plataforma de cursos com gamificação</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Cursos</span>
+                            <span class="tool-tag">Gamificação</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Construct</h3>
-                <p>Crie jogos incríveis</p>
-            </div>
 
-            <div class="tool-card" data-url="https://editor.p5js.org/prof_focoensino/sketches"
-                data-name="p5js biblioteca criativa">
-                <div class="tool-icon">
-                    <i class="fas fa-paint-brush p5js"></i>
+                <!-- Invntor -->
+                <div class="tool-card fade-in" data-categories="tools"
+                     data-url="https://app.invntor.com/"
+                     data-name="invntor app inventário">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-boxes invntor"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Invntor</h3>
+                        <p>Sistema de controle de inventário</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Inventário</span>
+                            <span class="tool-tag">Organização</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>p5.js</h3>
-                <p>Biblioteca criativa</p>
-            </div>
 
-            <div class="tool-card" data-url="https://codepen.io/your-work" data-name="codepen experiências com código">
-                <div class="tool-icon">
-                    <i class="fab fa-codepen codepen"></i>
+                <!-- Escola de Robótica -->
+                <div class="tool-card fade-in" data-categories="arduino dev"
+                     data-url="https://minhaescoladerobotica.club.hotmart.com/t/page/n2OM2pGr46?role=OWNER&classHash=DPeAdywX4W"
+                     data-name="escola robótica cursos">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-robot robotica"></i>
+                        </div>
+                        <span class="tool-card-badge">Robótica</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Escola de Robótica</h3>
+                        <p>Plataforma completa de cursos</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Cursos</span>
+                            <span class="tool-tag">Robótica</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>CodePen</h3>
-                <p>Experiências com código</p>
-            </div>
 
-            <div class="tool-card" data-url="https://expo.dev/" data-name="expo desenvolvimento mobile">
-                <div class="tool-icon">
-                    <i class="fas fa-mobile-alt expo"></i>
+                <!-- Construct -->
+                <div class="tool-card fade-in" data-categories="games dev"
+                     data-url="https://editor.construct.net/"
+                     data-name="construct criar jogos">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-gamepad construct"></i>
+                        </div>
+                        <span class="tool-card-badge">Game Dev</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Construct</h3>
+                        <p>Crie jogos incríveis sem código</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Jogos</span>
+                            <span class="tool-tag">Desenvolvimento</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Expo</h3>
-                <p>Desenvolvimento mobile</p>
-            </div>
 
-            <div class="tool-card"
-                data-url="https://console.firebase.google.com/u/0/?hl=pt-br&_gl=1*1v9sdhd*_ga*MjI3NjEyODYuMTc1NzE2OTc4Ng..*_ga_CW55HF8NVT*czE3NTc3NjY2ODkkbzIkZzEkdUE3NTc3NjY2ODkkajYwJGwwJGgw&pli=1"
-                data-name="firebase banco de dados em nuvem">
-                <div class="tool-icon">
-                    <i class="fas fa-database firebase"></i>
+                <!-- p5.js -->
+                <div class="tool-card fade-in" data-categories="dev"
+                     data-url="https://editor.p5js.org/prof_focoensino/sketches"
+                     data-name="p5js biblioteca criativa">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-paint-brush p5js"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>p5.js</h3>
+                        <p>Biblioteca para programação criativa</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Programação</span>
+                            <span class="tool-tag">Arte</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Firebase</h3>
-                <p>Banco de dados em nuvem</p>
-            </div>
 
-            <div class="tool-card" data-url="https://github.com/focoensino" data-name="github repositório de código">
-                <div class="tool-icon">
-                    <i class="fab fa-github github"></i>
+                <!-- CodePen -->
+                <div class="tool-card fade-in" data-categories="dev"
+                     data-url="https://codepen.io/your-work"
+                     data-name="codepen experiências código">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fab fa-codepen codepen"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>CodePen</h3>
+                        <p>Experiências interativas com código</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Frontend</span>
+                            <span class="tool-tag">Sandbox</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>GitHub</h3>
-                <p>Repositório de código</p>
-            </div>
 
-            <div class="tool-card" data-url="https://drive.google.com/drive/u/0/home"
-                data-name="google drive materiais das aulas">
-                <div class="tool-icon">
-                    <i class="fab fa-google-drive drive"></i>
+                <!-- Expo -->
+                <div class="tool-card fade-in" data-categories="dev"
+                     data-url="https://expo.dev/"
+                     data-name="expo desenvolvimento mobile">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-mobile-alt expo"></i>
+                        </div>
+                        <span class="tool-card-badge">Mobile</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Expo</h3>
+                        <p>Desenvolvimento mobile com React Native</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">React Native</span>
+                            <span class="tool-tag">Mobile</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Google Drive</h3>
-                <p>Materiais das aulas</p>
-            </div>
 
-            <div class="tool-card" data-url="https://meet.google.com/landing" data-name="google meet aulas digitais">
-                <div class="tool-icon">
-                    <i class="fas fa-video meet"></i>
+                <!-- Firebase -->
+                <div class="tool-card fade-in" data-categories="dev tools"
+                     data-url="https://console.firebase.google.com/u/0/?hl=pt-br"
+                     data-name="firebase banco dados nuvem">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-database firebase"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Firebase</h3>
+                        <p>Backend como serviço e banco de dados</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Backend</span>
+                            <span class="tool-tag">Database</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Google Meet</h3>
-                <p>Aulas Digitais</p>
-            </div>
-        </div>
 
+                <!-- GitHub -->
+                <div class="tool-card fade-in" data-categories="dev tools"
+                     data-url="https://github.com/focoensino"
+                     data-name="github repositório código">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fab fa-github github"></i>
+                        </div>
+                        <span class="tool-card-badge">Open Source</span>
+                    </div>
+                    <div class="tool-info">
+                        <h3>GitHub</h3>
+                        <p>Repositório de código e projetos</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Versionamento</span>
+                            <span class="tool-tag">Colaboração</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Drive -->
+                <div class="tool-card fade-in" data-categories="tools"
+                     data-url="https://drive.google.com/drive/u/0/home"
+                     data-name="google drive materiais">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fab fa-google-drive drive"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Google Drive</h3>
+                        <p>Armazenamento e compartilhamento de materiais</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Armazenamento</span>
+                            <span class="tool-tag">Colaboração</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Meet -->
+                <div class="tool-card fade-in" data-categories="tools"
+                     data-url="https://meet.google.com/landing"
+                     data-name="google meet aulas digitais">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-video meet"></i>
+                        </div>
+                    </div>
+                    <div class="tool-info">
+                        <h3>Google Meet</h3>
+                        <p>Videoconferências para aulas digitais</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Videoconferência</span>
+                            <span class="tool-tag">Aulas Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENSAGEM SEM RESULTADOS -->
         <div class="no-results" id="noResults">
-            <h3>Nenhuma ferramenta encontrada com esse nome.</h3>
-            <p>Deseja pesquisar no Google?</p>
-            <button class="google-btn" id="googleFallbackSearch">
+            <div style="font-size: 4rem; margin-bottom: 1rem; color: var(--text-muted);">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>Nenhuma ferramenta encontrada</h3>
+            <p style="margin: 1rem 0;">Não encontramos ferramentas correspondentes à sua busca.</p>
+            <button class="search-btn btn-google" id="googleFallbackSearch">
                 <i class="fab fa-google"></i> Pesquisar no Google
             </button>
         </div>
 
-        <!-- NOVA SEÇÃO ARDUINO -->
-        <div class="arduino-section">
-            <h2><i class="fas fa-microchip arduino"></i> Aulas Arduino</h2>
-            <div class="arduino-grid">
-                <!-- AUTOMAÇÃO DO T-REX -->
-                <div class="arduino-card"
-                    data-url="https://drive.google.com/file/d/1CmDq9IyrxZJlQgaNpVJoVcRII7ID-gsb/view?usp=drive_link"
-                    data-name="automação do trex arduino projeto">
-                    <div class="arduino-icon">
-                        <img src="trex-img.png" alt="Automação T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
+        <!-- SEÇÃO ARDUINO -->
+        <section class="arduino-section">
+            <h2 style="color: var(--arduino); margin-bottom: var(--space-lg);">
+                <i class="fas fa-microchip"></i> Projetos Arduino
+            </h2>
+            <div class="tools-grid">
+                <!-- Automação T-Rex -->
+                <div class="tool-card fade-in" data-categories="arduino"
+                     data-url="https://drive.google.com/file/d/1CmDq9IyrxZJlQgaNpVJoVcRII7ID-gsb/view?usp=drive_link"
+                     data-name="automação trex arduino projeto">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-dinosaur" style="color: var(--warning);"></i>
+                        </div>
+                        <span class="tool-card-badge" style="background: var(--warning);">Game</span>
                     </div>
-                    <h3>Automação do T-Rex</h3>
-                    <p>Projeto com Arduino</p>
+                    <div class="tool-info">
+                        <h3>Automação T-Rex</h3>
+                        <p>Projeto de automação do jogo do dinossauro</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Arduino</span>
+                            <span class="tool-tag">Automação</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- LIXEIRA AUTOMÁTICA -->
-                <div class="arduino-card"
-                    data-url="https://drive.google.com/file/d/1i_ygHXG8P2e4wVXTZ-MlLJp90Re-GMiS/view?usp=drive_link"
-                    data-name="lixeira automática arduino projeto">
-                    <div class="arduino-icon">
-                        <i class="fas fa-trash-alt trash"></i>
+                <!-- Lixeira Automática -->
+                <div class="tool-card fade-in" data-categories="arduino"
+                     data-url="https://drive.google.com/file/d/1i_ygHXG8P2e4wVXTZ-MlLJp90Re-GMiS/view?usp=drive_link"
+                     data-name="lixeira automática arduino">
+                    <div class="tool-card-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-trash-alt trash"></i>
+                        </div>
+                        <span class="tool-card-badge" style="background: var(--success);">IoT</span>
                     </div>
-                    <h3>Lixeira Automática</h3>
-                    <p>Projeto com sensores</p>
+                    <div class="tool-info">
+                        <h3>Lixeira Automática</h3>
+                        <p>Projeto com sensores e automação</p>
+                        <div class="tool-tags">
+                            <span class="tool-tag">Arduino</span>
+                            <span class="tool-tag">Sensores</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- SEÇÃO PDF ATUALIZADA COM EXERCÍCIOS JS E PROJETO KWITER -->
-        <div class="pdf-section">
-            <h2><i class="fas fa-file-pdf"></i> PDFs das Aulas e Exercícios</h2>
-            <div class="pdf-grid">
-                <!-- PROJETO KWITER - NOVO CARD -->
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/1qFZ70_tc73ZhbTjhmIFIHxw5EOVh-b4W/view?usp=drive_link"
-                    data-name="projeto kwiter passo a passo aula">
-                    <div class="pdf-icon">
-                        <i class="fas fa-file-alt kwiter">K</i>
+        <!-- SEÇÃO DE MATERIAIS -->
+        <section class="materials-section">
+            <h2>Materiais de Aula & Exercícios</h2>
+            <div class="materials-grid">
+                <!-- Projeto Kwiter -->
+                <div class="material-card fade-in" data-categories="pdf"
+                     data-url="https://drive.google.com/file/d/1qFZ70_tc73ZhbTjhmIFIHxw5EOVh-b4W/view?usp=drive_link"
+                     data-name="projeto kwiter passo a passo">
+                    <div class="tool-icon">
+                        <span class="kwiter">K</span>
                     </div>
                     <h3>Projeto Kwiter</h3>
                     <p>Passo a passo completo</p>
                 </div>
 
-                <!-- T-REX AULAS -->
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/1BHC5_qYXj70iPQhvzqEkAMrfKEJA6s0V/view?usp=drive_link">
-                    <div class="pdf-icon">
-                        <img src="trex-img.png" alt="T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
+                <!-- T-Rex Aula 1 -->
+                <div class="material-card fade-in" data-categories="pdf games"
+                     data-url="https://drive.google.com/file/d/1BHC5_qYXj70iPQhvzqEkAMrfKEJA6s0V/view?usp=drive_link"
+                     data-name="trex aula 1 introdução">
+                    <div class="tool-icon">
+                        <i class="fas fa-dinosaur" style="color: var(--warning);"></i>
                     </div>
                     <h3>T-Rex Aula 1</h3>
                     <p>Introdução ao jogo</p>
                 </div>
 
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/1HnlLVNS8Tt-vG9kPljClM12BAwAtdLdI/view?usp=drive_link">
-                    <div class="pdf-icon">
-                        <img src="trex-img.png" alt="T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
+                <!-- T-Rex Aula 2 -->
+                <div class="material-card fade-in" data-categories="pdf games"
+                     data-url="https://drive.google.com/file/d/1HnlLVNS8Tt-vG9kPljClM12BAwAtdLdI/view?usp=drive_link"
+                     data-name="trex aula 2 movimentação">
+                    <div class="tool-icon">
+                        <i class="fas fa-dinosaur" style="color: var(--warning);"></i>
                     </div>
                     <h3>T-Rex Aula 2</h3>
                     <p>Movimentação e obstáculos</p>
                 </div>
 
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/19wmgyH3dYuIV9btcEXcFj6lgqDCi-j5p/view?usp=drive_link">
-                    <div class="pdf-icon">
-                        <img src="trex-img.png" alt="T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
+                <!-- T-Rex Aula 3 -->
+                <div class="material-card fade-in" data-categories="pdf games"
+                     data-url="https://drive.google.com/file/d/19wmgyH3dYuIV9btcEXcFj6lgqDCi-j5p/view?usp=drive_link"
+                     data-name="trex aula 3 colisões">
+                    <div class="tool-icon">
+                        <i class="fas fa-dinosaur" style="color: var(--warning);"></i>
                     </div>
                     <h3>T-Rex Aula 3</h3>
                     <p>Colisões e pontuação</p>
                 </div>
 
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/1m0lhXhPTxqivQ346_j2q5qmZ-zoKvGSR/view?usp=drive_link">
-                    <div class="pdf-icon">
-                        <img src="trex-img.png" alt="T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
-                    </div>
-                    <h3>T-Rex Aula 4</h3>
-                    <p>Finalização do jogo</p>
-                </div>
-
-                <!-- BREAKOUT -->
-                <div class="pdf-card"
-                    data-url="https://drive.google.com/file/d/1BGG7MmjOfkPu-dIBQrMfDq4qIZCotv3e/view?usp=sharing">
-                    <div class="pdf-icon">
+                <!-- BreakOut -->
+                <div class="material-card fade-in" data-categories="pdf games"
+                     data-url="https://drive.google.com/file/d/1BGG7MmjOfkPu-dIBQrMfDq4qIZCotv3e/view?usp=sharing"
+                     data-name="breakout jogo completo">
+                    <div class="tool-icon">
                         <i class="fas fa-table-tennis-paddle-ball breakout"></i>
                     </div>
                     <h3>BreakOut</h3>
-                    <p>Jogo completo BreakOut</p>
+                    <p>Jogo completo</p>
                 </div>
 
-                <!-- EXERCÍCIOS JAVASCRIPT - REPOSITÓRIO -->
-                <div class="pdf-card" data-url="https://github.com/focoensino/Exercicios-Javascritp">
-                    <div class="pdf-icon">
+                <!-- Exercícios JavaScript - Repositório -->
+                <div class="material-card repo fade-in" data-categories="pdf dev"
+                     data-url="https://github.com/focoensino/Exercicios-Javascritp"
+                     data-name="exercícios javascript repositório">
+                    <div class="tool-icon">
                         <i class="fab fa-js javascript"></i>
                     </div>
                     <h3>Exercícios JS</h3>
-                    <p>Repositório GitHub</p>
+                    <p>Repositório no GitHub</p>
                 </div>
 
-                <!-- EXERCÍCIOS JAVASCRIPT - LISTA ONLINE -->
-                <div class="pdf-card" data-url="https://focoensino.github.io/Exercicios-Javascritp/exercicios/">
-                    <div class="pdf-icon">
-                        <i class="fas fa-list-check js-list"></i>
+                <!-- Exercícios JavaScript - Lista -->
+                <div class="material-card exercises fade-in" data-categories="pdf dev"
+                     data-url="https://focoensino.github.io/Exercicios-Javascritp/exercicios/"
+                     data-name="lista exercícios javascript online">
+                    <div class="tool-icon">
+                        <i class="fas fa-list-check" style="color: var(--javascript);"></i>
                     </div>
-                    <h3>Lista Exercícios JS</h3>
+                    <h3>Lista de Exercícios</h3>
                     <p>Exercícios online</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="instructions">
-            <h2>Como usar este portal</h2>
-            <ol>
-                <li>Digite o nome de uma ferramenta na barra de pesquisa</li>
-                <li>Clique em "Portal" para pesquisar nas ferramentas disponíveis</li>
-                <li>Se não encontrar, clique em "Google" para pesquisar na web</li>
-                <li>Clique no card da ferramenta para abri-la em uma nova aba</li>
-                <li>Para voltar ao portal, basta fechar a aba da ferramenta</li>
-            </ol>
-        </div>
+        <!-- INSTRUÇÕES -->
+        <section class="instructions">
+            <h2>Como usar o Portal</h2>
+            <div class="instructions-grid">
+                <div class="instruction-card">
+                    <div class="icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Busca Inteligente</h3>
+                    <p>Use a barra de pesquisa para encontrar ferramentas, aulas ou materiais específicos.</p>
+                </div>
+                <div class="instruction-card">
+                    <div class="icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Filtros Rápidos</h3>
+                    <p>Utilize os filtros para organizar por categoria: desenvolvimento, Arduino, jogos, etc.</p>
+                </div>
+                <div class="instruction-card">
+                    <div class="icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Acesso Rápido</h3>
+                    <p>As ferramentas usadas recentemente aparecem na seção "Acessados Recentemente".</p>
+                </div>
+                <div class="instruction-card">
+                    <div class="icon">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    <h3>Abertura em Nova Aba</h3>
+                    <p>Todos os links abrem em nova aba para você não perder o portal.</p>
+                </div>
+            </div>
+        </section>
 
+        <!-- RODAPÉ -->
         <footer>
-            <p>Desenvolvido com ❤️ para a Escola de Programação | &copy; 2025</p>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Contato</a>
+                    <a href="#"><i class="fas fa-info-circle"></i> Sobre</a>
+                </div>
+                <p class="copyright">
+                    Desenvolvido com <i class="fas fa-heart" style="color: var(--accent);"></i> para a Escola de Programação | &copy; 2025
+                </p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">
+                    v2.0 | Última atualização: <span id="currentDate"></span>
+                </p>
+            </div>
         </footer>
     </div>
 
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MODAL DE DETALHES -->
+    <div class="modal" id="toolModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 id="modalTitle">Detalhes da Ferramenta</h3>
+            <div id="modalContent">
+                <!-- Conteúdo dinâmico -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ===== INICIALIZAÇÃO DO PORTAL =====
         document.addEventListener("DOMContentLoaded", function () {
-            // Elementos da DOM
+            // ===== INICIALIZAÇÃO =====
             const searchInput = document.getElementById("searchInput");
             const searchButton = document.getElementById("searchButton");
             const googleSearchButton = document.getElementById("googleSearchButton");
             const googleFallbackSearch = document.getElementById("googleFallbackSearch");
-            const noResults = document.getElementById("noResults");
-            const toolCards = document.querySelectorAll(".tool-card");
-            const pdfCards = document.querySelectorAll(".pdf-card");
-            const arduinoCards = document.querySelectorAll(".arduino-card");
+            const clearRecentBtn = document.getElementById("clearRecent");
+            const backToTopBtn = document.getElementById("backToTop");
+            const toolModal = document.getElementById("toolModal");
+            const modalClose = document.getElementById("modalClose");
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const allToolCards = document.querySelectorAll(".tool-card, .material-card");
             const recentToolsList = document.getElementById("recentToolsList");
 
             // Variáveis de estado
-            let lastSearchTerm = "";
             let recentTools = JSON.parse(localStorage.getItem('recentTools')) || [];
+            let lastSearchTerm = "";
+            let currentFilter = "all";
 
-            // ===== FUNÇÕES DE GERENCIAMENTO DE FERRAMENTAS RECENTES =====
+            // ===== ATUALIZAR DATA ATUAL =====
+            document.getElementById("currentDate").textContent = new Date().toLocaleDateString('pt-BR');
 
-            /**
-             * Atualiza a lista de ferramentas recentes na interface
-             */
+            // ===== FUNÇÕES DE FERRAMENTAS RECENTES =====
             function updateRecentToolsList() {
                 recentToolsList.innerHTML = '';
-                recentTools.slice(0, 5).forEach(tool => {
-                    const item = document.createElement('div');
-                    item.className = 'recent-item';
-                    item.textContent = tool.name;
-                    item.addEventListener('click', () => {
+                if (recentTools.length === 0) {
+                    recentToolsList.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: var(--space-md);">Nenhuma ferramenta acessada recentemente</p>';
+                    return;
+                }
+
+                recentTools.slice(0, 6).forEach(tool => {
+                    const card = document.createElement('div');
+                    card.className = 'tool-card';
+                    card.style.padding = 'var(--space-sm)';
+                    card.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: var(--border-radius-sm);">
+                                <i class="${tool.icon || 'fas fa-link'}"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="margin: 0; font-size: 0.9rem;">${tool.name}</h4>
+                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">${tool.category || 'Ferramenta'}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => {
                         window.open(tool.url, '_blank');
                     });
-                    recentToolsList.appendChild(item);
+                    
+                    recentToolsList.appendChild(card);
                 });
             }
 
-            /**
-             * Adiciona uma ferramenta à lista de recentes
-             * @param {string} name - Nome da ferramenta
-             * @param {string} url - URL da ferramenta
-             */
-            function addToRecentTools(name, url) {
+            function addToRecentTools(name, url, category = '', icon = '') {
                 // Remove se já existir
                 recentTools = recentTools.filter(tool => tool.url !== url);
                 // Adiciona no início
-                recentTools.unshift({ name, url });
-                // Mantém apenas as 5 mais recentes
-                recentTools = recentTools.slice(0, 5);
+                recentTools.unshift({ 
+                    name, 
+                    url, 
+                    category, 
+                    icon,
+                    timestamp: Date.now() 
+                });
+                // Mantém apenas as 6 mais recentes
+                recentTools = recentTools.slice(0, 6);
                 // Salva no localStorage
                 localStorage.setItem('recentTools', JSON.stringify(recentTools));
                 // Atualiza a lista
@@ -1075,146 +1538,72 @@
             }
 
             // ===== FUNÇÕES DE PESQUISA =====
-
-            /**
-             * Realiza a pesquisa no portal
-             */
             function performPortalSearch() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 lastSearchTerm = searchTerm;
 
-                // Se não há termo de pesquisa, mostra todas as ferramentas
                 if (!searchTerm) {
-                    toolCards.forEach((card) => {
-                        card.style.display = "block";
-                    });
-                    pdfCards.forEach((card) => {
-                        card.style.display = "flex";
-                    });
-                    arduinoCards.forEach((card) => {
-                        card.style.display = "flex";
-                    });
-                    noResults.classList.remove("show");
+                    // Mostra todos os cards baseado no filtro atual
+                    applyFilter(currentFilter);
+                    document.getElementById('noResults').classList.remove('show');
                     return;
                 }
 
                 let found = false;
 
-                // Filtra as ferramentas com base no termo de pesquisa
-                toolCards.forEach((card) => {
-                    const toolData = card.getAttribute("data-name")?.toLowerCase() || "";
-                    const toolName = card.querySelector("h3").textContent.toLowerCase();
-                    const toolDesc = card.querySelector("p").textContent.toLowerCase();
+                allToolCards.forEach(card => {
+                    const cardName = card.querySelector('h3').textContent.toLowerCase();
+                    const cardDesc = card.querySelector('p').textContent.toLowerCase();
+                    const dataName = card.getAttribute('data-name')?.toLowerCase() || '';
+                    const categories = card.getAttribute('data-categories')?.toLowerCase() || '';
 
-                    if (
-                        toolData.includes(searchTerm) ||
-                        toolName.includes(searchTerm) ||
-                        toolDesc.includes(searchTerm)
-                    ) {
-                        card.style.display = "block";
+                    if (cardName.includes(searchTerm) || 
+                        cardDesc.includes(searchTerm) || 
+                        dataName.includes(searchTerm) ||
+                        categories.includes(searchTerm)) {
+                        card.style.display = 'flex';
                         found = true;
                     } else {
-                        card.style.display = "none";
+                        card.style.display = 'none';
                     }
                 });
 
-                // Pesquisa nos PDFs
-                pdfCards.forEach((card) => {
-                    const pdfName = card.querySelector("h3").textContent.toLowerCase();
-                    const pdfDesc = card.querySelector("p").textContent.toLowerCase();
-                    const pdfData = card.getAttribute("data-name")?.toLowerCase() || "";
-
-                    if (
-                        pdfData.includes(searchTerm) ||
-                        pdfName.includes(searchTerm) ||
-                        pdfDesc.includes(searchTerm)
-                    ) {
-                        card.style.display = "flex";
-                        found = true;
-                    } else {
-                        card.style.display = "none";
-                    }
-                });
-
-                // Pesquisa nas aulas Arduino
-                arduinoCards.forEach((card) => {
-                    const arduinoName = card.querySelector("h3").textContent.toLowerCase();
-                    const arduinoDesc = card.querySelector("p").textContent.toLowerCase();
-                    const arduinoData = card.getAttribute("data-name")?.toLowerCase() || "";
-
-                    if (
-                        arduinoData.includes(searchTerm) ||
-                        arduinoName.includes(searchTerm) ||
-                        arduinoDesc.includes(searchTerm)
-                    ) {
-                        card.style.display = "flex";
-                        found = true;
-                    } else {
-                        card.style.display = "none";
-                    }
-                });
-
-                // Mostra mensagem se não encontrou resultados
                 if (!found) {
-                    noResults.classList.add("show");
+                    document.getElementById('noResults').classList.add('show');
                 } else {
-                    noResults.classList.remove("show");
+                    document.getElementById('noResults').classList.remove('show');
                 }
             }
 
-            /**
-             * Realiza a pesquisa no Google
-             */
             function performGoogleSearch() {
                 const searchTerm = lastSearchTerm || searchInput.value.trim();
                 if (searchTerm) {
-                    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm + " programação")}`;
+                    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm + " programação site:focoensino")}`;
                     window.open(googleSearchUrl, "_blank");
                 }
             }
 
-            // ===== INICIALIZAÇÃO =====
+            // ===== FUNÇÕES DE FILTRO =====
+            function applyFilter(filter) {
+                currentFilter = filter;
+                
+                filterBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.filter === filter);
+                });
 
-            // Inicializa a lista de ferramentas recentes
-            updateRecentToolsList();
-
-            // Adiciona evento de clique para todos os cards de ferramentas
-            toolCards.forEach((card) => {
-                card.addEventListener("click", function () {
-                    const url = this.getAttribute("data-url");
-                    const name = this.querySelector("h3").textContent;
-                    if (url) {
-                        addToRecentTools(name, url);
-                        window.open(url, "_blank");
+                allToolCards.forEach(card => {
+                    const categories = card.getAttribute('data-categories') || '';
+                    
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
                     }
                 });
-            });
+            }
 
-            // Adiciona evento de clique para os cards de PDF
-            pdfCards.forEach((card) => {
-                card.addEventListener("click", function () {
-                    const url = this.getAttribute("data-url");
-                    const name = this.querySelector("h3").textContent;
-                    if (url) {
-                        addToRecentTools(name, url);
-                        window.open(url, "_blank");
-                    }
-                });
-            });
-
-            // Adiciona evento de clique para os cards Arduino
-            arduinoCards.forEach((card) => {
-                card.addEventListener("click", function () {
-                    const url = this.getAttribute("data-url");
-                    const name = this.querySelector("h3").textContent;
-                    if (url) {
-                        addToRecentTools(name, url);
-                        window.open(url, "_blank");
-                    }
-                });
-            });
-
-            // Eventos de pesquisa
+            // ===== EVENT LISTENERS =====
+            // Pesquisa
             searchButton.addEventListener("click", performPortalSearch);
             searchInput.addEventListener("keyup", function (event) {
                 if (event.key === "Enter") {
@@ -1222,27 +1611,149 @@
                 }
             });
 
-            // Eventos de pesquisa no Google
+            // Botões Google
             googleSearchButton.addEventListener("click", performGoogleSearch);
             googleFallbackSearch.addEventListener("click", performGoogleSearch);
 
-            // ===== EFEITO DE DIGITAÇÃO NO SUBTÍTULO =====
-            const subtitleText =
-                "Um lugar para acessar todas as ferramentas que usamos em nossas aulas de programação!";
-            const subtitleElement = document.querySelector(".subtitle");
-            let i = 0;
+            // Filtros
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyFilter(btn.dataset.filter);
+                });
+            });
 
-            subtitleElement.textContent = "";
-
-            function typeWriter() {
-                if (i < subtitleText.length) {
-                    subtitleElement.textContent += subtitleText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
+            // Limpar recentes
+            clearRecentBtn.addEventListener('click', () => {
+                if (confirm('Deseja realmente limpar o histórico de ferramentas recentes?')) {
+                    recentTools = [];
+                    localStorage.removeItem('recentTools');
+                    updateRecentToolsList();
                 }
+            });
+
+            // Abertura de ferramentas
+            allToolCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const url = this.getAttribute('data-url');
+                    const name = this.querySelector('h3').textContent;
+                    const category = this.getAttribute('data-categories')?.split(' ')[0] || '';
+                    const icon = this.querySelector('.tool-icon i')?.className || 'fas fa-link';
+                    
+                    if (url) {
+                        addToRecentTools(name, url, category, icon);
+                        window.open(url, '_blank');
+                    }
+                });
+            });
+
+            // Voltar ao topo
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Fechar modal
+            modalClose.addEventListener('click', () => {
+                toolModal.classList.remove('active');
+            });
+
+            toolModal.addEventListener('click', (e) => {
+                if (e.target === toolModal) {
+                    toolModal.classList.remove('active');
+                }
+            });
+
+            // ===== EFEITO DE DIGITAÇÃO NO PLACEHOLDER =====
+            const placeholderTexts = [
+                "Digite o nome da ferramenta...",
+                "Busque por 'JavaScript'...",
+                "Procure por 'Arduino'...",
+                "Encontre materiais de aula...",
+                "Pesquise por jogos educativos..."
+            ];
+            
+            let placeholderIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+
+            function typePlaceholder() {
+                const currentText = placeholderTexts[placeholderIndex];
+                
+                if (isDeleting) {
+                    searchInput.placeholder = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    searchInput.placeholder = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    typingSpeed = 1500; // Pausa no final
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    placeholderIndex = (placeholderIndex + 1) % placeholderTexts.length;
+                    typingSpeed = 500; // Pausa entre textos
+                }
+
+                setTimeout(typePlaceholder, typingSpeed);
             }
 
-            setTimeout(typeWriter, 1000);
+            // Inicia o efeito apenas se o campo estiver vazio
+            searchInput.addEventListener('focus', () => {
+                if (searchInput.value === '') {
+                    typePlaceholder();
+                }
+            });
+
+            searchInput.addEventListener('blur', () => {
+                searchInput.placeholder = "Digite o nome da ferramenta, aula ou material...";
+            });
+
+            // ===== ANIMAÇÃO DE ENTRADA =====
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.tool-card, .material-card, .instruction-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // ===== CONTADOR DE FERRAMENTAS =====
+            const toolCountElement = document.getElementById('toolCount');
+            const totalTools = document.querySelectorAll('.tool-card, .material-card').length;
+            toolCountElement.textContent = `${totalTools} ferramentas disponíveis`;
+
+            // ===== INICIALIZAÇÃO FINAL =====
+            updateRecentToolsList();
+            applyFilter('all');
+
+            // Efeito de inicialização
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
