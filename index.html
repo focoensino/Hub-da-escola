@@ -18,7 +18,9 @@
             --secondary: #7e22ce;
             --accent: #ec4899;
             --accent-glow: #ec489980;
-            --coliseum: #d97706; /* NOVA COR PARA O COLISEUM */
+            --coliseum: #d97706;
+            --arduino: #00979d; /* NOVA COR PARA O ARDUINO - VERDE AZULADO */
+            --arduino-glow: rgba(0, 151, 157, 0.6); /* GLOW DO ARDUINO */
 
             /* Cores de fundo */
             --dark-bg: #0f172a;
@@ -52,6 +54,10 @@
             --js-glow: rgba(240, 219, 79, 0.6);
             --js-list: #61dbfb;
             --js-list-glow: rgba(97, 219, 251, 0.6);
+            --kwiter: #00c1d4;
+            --kwiter-glow: rgba(0, 193, 212, 0.6);
+            --trash: #22d3ee; /* COR PARA LIXEIRA AUTOMÁTICA - CIANO */
+            --trash-glow: rgba(34, 211, 238, 0.6); /* GLOW DA LIXEIRA */
 
             /* Bordas e sombras */
             --border-radius: 16px;
@@ -414,10 +420,27 @@
             text-shadow: 0 0 8px var(--js-list-glow);
         }
 
-        /* ===== NOVO ÍCONE COLISEUM ===== */
         .coliseum {
             color: var(--coliseum);
             text-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+        }
+
+        .kwiter {
+            color: var(--kwiter);
+            text-shadow: 0 0 8px var(--kwiter-glow);
+            font-weight: bold;
+        }
+
+        /* ===== NOVO ÍCONE ARDUINO ===== */
+        .arduino {
+            color: var(--arduino);
+            text-shadow: 0 0 8px var(--arduino-glow);
+        }
+
+        /* ===== NOVO ÍCONE LIXEIRA AUTOMÁTICA ===== */
+        .trash {
+            color: var(--trash);
+            text-shadow: 0 0 8px var(--trash-glow);
         }
 
         /* ===== SEM RESULTADOS ===== */
@@ -498,6 +521,100 @@
             color: var(--text-muted);
         }
 
+        /* ===== NOVA SEÇÃO ARDUINO ===== */
+        .arduino-section {
+            margin-top: var(--spacing-xl);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arduino-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--arduino), var(--success));
+            z-index: 1;
+        }
+
+        .arduino-section h2 {
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            color: var(--arduino);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .arduino-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .arduino-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arduino-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--arduino);
+        }
+
+        .arduino-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--arduino), var(--success));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .arduino-card:hover::before {
+            opacity: 1;
+        }
+
+        .arduino-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .arduino-card h3 {
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text);
+        }
+
+        .arduino-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         /* ===== INSTRUÇÕES ===== */
         .instructions {
             background: var(--card-bg);
@@ -569,7 +686,7 @@
                 gap: 15px;
             }
 
-            .pdf-grid {
+            .pdf-grid, .arduino-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
 
@@ -605,7 +722,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .pdf-grid {
+            .pdf-grid, .arduino-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -626,7 +743,6 @@
                 border-radius: 50px;
                 padding: 12px;
             }
-            
         }
     </style>
 </head>
@@ -778,10 +894,49 @@
             </button>
         </div>
 
-        <!-- SEÇÃO PDF ATUALIZADA COM EXERCÍCIOS JS -->
+        <!-- NOVA SEÇÃO ARDUINO -->
+        <div class="arduino-section">
+            <h2><i class="fas fa-microchip arduino"></i> Aulas Arduino</h2>
+            <div class="arduino-grid">
+                <!-- AUTOMAÇÃO DO T-REX -->
+                <div class="arduino-card"
+                    data-url="https://drive.google.com/file/d/1CmDq9IyrxZJlQgaNpVJoVcRII7ID-gsb/view?usp=drive_link"
+                    data-name="automação do trex arduino projeto">
+                    <div class="arduino-icon">
+                        <img src="trex-img.png" alt="Automação T-Rex" style="width: 48px; height: 48px; object-fit: contain;">
+                    </div>
+                    <h3>Automação do T-Rex</h3>
+                    <p>Projeto com Arduino</p>
+                </div>
+
+                <!-- LIXEIRA AUTOMÁTICA -->
+                <div class="arduino-card"
+                    data-url="https://drive.google.com/file/d/1i_ygHXG8P2e4wVXTZ-MlLJp90Re-GMiS/view?usp=drive_link"
+                    data-name="lixeira automática arduino projeto">
+                    <div class="arduino-icon">
+                        <i class="fas fa-trash-alt trash"></i>
+                    </div>
+                    <h3>Lixeira Automática</h3>
+                    <p>Projeto com sensores</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO PDF ATUALIZADA COM EXERCÍCIOS JS E PROJETO KWITER -->
         <div class="pdf-section">
             <h2><i class="fas fa-file-pdf"></i> PDFs das Aulas e Exercícios</h2>
             <div class="pdf-grid">
+                <!-- PROJETO KWITER - NOVO CARD -->
+                <div class="pdf-card"
+                    data-url="https://drive.google.com/file/d/1qFZ70_tc73ZhbTjhmIFIHxw5EOVh-b4W/view?usp=drive_link"
+                    data-name="projeto kwiter passo a passo aula">
+                    <div class="pdf-icon">
+                        <i class="fas fa-file-alt kwiter">K</i>
+                    </div>
+                    <h3>Projeto Kwiter</h3>
+                    <p>Passo a passo completo</p>
+                </div>
+
                 <!-- T-REX AULAS -->
                 <div class="pdf-card"
                     data-url="https://drive.google.com/file/d/1BHC5_qYXj70iPQhvzqEkAMrfKEJA6s0V/view?usp=drive_link">
@@ -876,6 +1031,7 @@
             const noResults = document.getElementById("noResults");
             const toolCards = document.querySelectorAll(".tool-card");
             const pdfCards = document.querySelectorAll(".pdf-card");
+            const arduinoCards = document.querySelectorAll(".arduino-card");
             const recentToolsList = document.getElementById("recentToolsList");
 
             // Variáveis de estado
@@ -932,6 +1088,12 @@
                     toolCards.forEach((card) => {
                         card.style.display = "block";
                     });
+                    pdfCards.forEach((card) => {
+                        card.style.display = "flex";
+                    });
+                    arduinoCards.forEach((card) => {
+                        card.style.display = "flex";
+                    });
                     noResults.classList.remove("show");
                     return;
                 }
@@ -950,6 +1112,42 @@
                         toolDesc.includes(searchTerm)
                     ) {
                         card.style.display = "block";
+                        found = true;
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+
+                // Pesquisa nos PDFs
+                pdfCards.forEach((card) => {
+                    const pdfName = card.querySelector("h3").textContent.toLowerCase();
+                    const pdfDesc = card.querySelector("p").textContent.toLowerCase();
+                    const pdfData = card.getAttribute("data-name")?.toLowerCase() || "";
+
+                    if (
+                        pdfData.includes(searchTerm) ||
+                        pdfName.includes(searchTerm) ||
+                        pdfDesc.includes(searchTerm)
+                    ) {
+                        card.style.display = "flex";
+                        found = true;
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+
+                // Pesquisa nas aulas Arduino
+                arduinoCards.forEach((card) => {
+                    const arduinoName = card.querySelector("h3").textContent.toLowerCase();
+                    const arduinoDesc = card.querySelector("p").textContent.toLowerCase();
+                    const arduinoData = card.getAttribute("data-name")?.toLowerCase() || "";
+
+                    if (
+                        arduinoData.includes(searchTerm) ||
+                        arduinoName.includes(searchTerm) ||
+                        arduinoDesc.includes(searchTerm)
+                    ) {
+                        card.style.display = "flex";
                         found = true;
                     } else {
                         card.style.display = "none";
@@ -994,6 +1192,18 @@
 
             // Adiciona evento de clique para os cards de PDF
             pdfCards.forEach((card) => {
+                card.addEventListener("click", function () {
+                    const url = this.getAttribute("data-url");
+                    const name = this.querySelector("h3").textContent;
+                    if (url) {
+                        addToRecentTools(name, url);
+                        window.open(url, "_blank");
+                    }
+                });
+            });
+
+            // Adiciona evento de clique para os cards Arduino
+            arduinoCards.forEach((card) => {
                 card.addEventListener("click", function () {
                     const url = this.getAttribute("data-url");
                     const name = this.querySelector("h3").textContent;
